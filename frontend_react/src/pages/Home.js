@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import KakaoMap from '../components/KakaoMap';
 
 class Home extends Component {
+
+    
+
     getSomeItem = () => {
         axios
             .get('/products')
@@ -18,10 +20,12 @@ class Home extends Component {
         //this.getSomeItem();
     }
     render() {
-        const { history } = this.props;
+        //const { history } = this.props;
+
         return (
             <div>
                 <KakaoMap />
+                
             </div>
         );
     }

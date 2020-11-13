@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import icon from '../images/icon.PNG';
 
 const Footer = () => {
@@ -6,9 +5,15 @@ const Footer = () => {
         <footer class="footer">
             <div class="container">
                 <div class="col-12 col-md">
-                    
                     <small class="d-block mb-3 text-muted">
-                        &copy; 2020 React
+                        <img
+                            alt=""
+                            src={icon}
+                            width="30"
+                            height="30"
+                            className="d-inline-block align-top"
+                        /> &nbsp;
+                        &copy; 2020 Sitter for MoM
                     </small>
                 </div>
                 

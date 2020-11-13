@@ -4,8 +4,7 @@
 import { Layout } from 'Layouts';
 import Accounts from 'pages/Accounts/Accounts';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { Home, Products, Cart } from './pages';
-import { products } from './routers';
+import { Home } from './pages';
 
 // react-router-dom v5 switch
 // v6 routes - upgrade
@@ -30,7 +29,6 @@ const PageRouter = () => {
                         path="/"
                         component={Home}
                     />
-                    <Route path="/products" component={products} />
                     <Route path="/accounts" component={Accounts} />
                 </Switch>
             </Layout>

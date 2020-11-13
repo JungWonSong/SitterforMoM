@@ -3,7 +3,9 @@ import {useHistory} from 'react-router-dom';
 import { setToekn } from 'store';
 import { useAppContext } from 'store';
 import KaKaoBtn from 'react-kakao-login';
-
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+import { Link } from 'react-router-dom';
 
 const SignIn = () => {
     const {store, dispatch} = useAppContext();
@@ -106,27 +108,18 @@ const SignIn = () => {
     };
     return (
         //TODO: 버튼들 크기에 맞게 정렬하고 가운데로 보내기
-        <div className="container">
-            <form onSubmit={onSubmit}>
-            <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-                
-                <div class="card text-center">
-                    <div class="card-Header">
-                        로그인
-                    </div>
-
-                    <div id="naverIdLogin" onClick={naverLogin}>
-                        <a href="#" alt="" class="btn btn-lg btn-block">
-                            <img src="https://static.nid.naver.com/oauth/big_g.PNG"  alt=""  width="100%" />
-                        </a>
-                    </div>
-                    
-                    <br />
-                    
-                    <a href="#" class="btn btn-lg btn-primary btn-block">
-                        <i class="fa fa-facebook" aria-hidden="true" width="100%"></i> 페이스북 로그인
-                    </a>
+        <Card  style={{ width: '18rem' }}>
+            <Card.Header variant="pills">로그인</Card.Header>
+            <ListGroup variant="flush">
+                <ListGroup.Item>
+                    <Link>
+                        <img 
+                        src="https://static.nid.naver.com/oauth/big_g.PNG"  
+                        alt=""  
+                        width="100%" />
+                    </Link>
+                </ListGroup.Item>
+                <ListGroup.Item>
                     <KaKaoBtn 
                         width="100%"
                         //styled component 통해 style을 입혀 줄 예정 
@@ -138,12 +131,10 @@ const SignIn = () => {
                         //성공했을때 불러올 함수로서 fetch해서 localStorage에 저장할 함수를 여기로 저장 
                         getProfile={true}
                     />
-                    
-                </div>
-            </div>
-            </div>
-            </form>
-        </div>
+                </ListGroup.Item>
+            </ListGroup>
+        </Card>
+        
     );
 };
 export default SignIn;

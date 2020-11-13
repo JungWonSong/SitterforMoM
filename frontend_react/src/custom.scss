@@ -2,8 +2,9 @@
 
 /* make the customizations */
 $theme-colors: (
-    "info": rgb(8, 8, 59),
-    "danger": teal
+    //"info": rgb(72, 81, 133),
+    "info": rgb(47, 129, 129),
+    "danger": rgb(73, 168, 168)
 );
 html {
     position: relative;
@@ -23,8 +24,8 @@ html {
   }
   .container {
     width: auto;
-    max-width: 680px;
-    padding: 0 15px;
+    //max-width: 680px;
+    padding: 5 15px;
   }
   .container .text-muted {
     margin: 20px 0;

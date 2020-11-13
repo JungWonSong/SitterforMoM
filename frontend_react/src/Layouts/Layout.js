@@ -1,14 +1,13 @@
 
-import { Nav, Footer } from '.';
-import Home from '../pages/Home';
+import { NavCustom, Footer } from './';
 
 const Layout = ({ children, match, location, history }) => {
     
     return (
         <>
-            <Nav />
+            <NavCustom />
 
-            <div className="container my-5">{children}
+            <div className="container mr-auto">{children}
                 
             </div>
             
