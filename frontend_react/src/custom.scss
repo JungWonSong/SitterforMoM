@@ -6,11 +6,18 @@ $theme-colors: (
     "info": rgb(47, 129, 129),
     "danger": rgb(73, 168, 168)
 );
-html {
+//NavDropdown
+.hover,
+.focus {
+    color: #5E5E5E;
+};
+
+.html {
     position: relative;
     min-height: 100%;
   }
-  body {
+ .body {
+    margin-top: 60px;
     /* Margin bottom by footer height */
     margin-bottom: 60px;
   }

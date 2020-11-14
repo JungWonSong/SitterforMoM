@@ -21,6 +21,7 @@ const SignIn = () => {
         Kakao.Auth.setAccessToken(USER_ACCESS_TOKEN);
         
         //TODO: 처음 사용자이면 사용자 정보를 장고에 보내서 저장
+        // 기 등록된 회원이면 로그인 했다고 알림
         Kakao.API.request({
             url: '/v2/user/me',
             success: function(response) {

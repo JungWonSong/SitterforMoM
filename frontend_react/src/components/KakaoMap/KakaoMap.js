@@ -41,7 +41,7 @@ const KakaoMap = () => {
     return (
         
         <div  id='myMap' style={{
-            width: '100%', 
+            width: '98%%', 
             height: '900px'
         }}></div>
     );
