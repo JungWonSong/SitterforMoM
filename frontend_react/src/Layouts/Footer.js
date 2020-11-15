@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <Navbar fixed="bottom" expand="sm" variant="light" bg="light">
             <Container>
-                <small class="d-block mb-3 text-muted">
+                <small className="d-block mb-3 text-muted">
                     <img
                         alt=""
                         src={icon}
