@@ -1,4 +1,5 @@
 
+import UserCreate from 'components/UserCreate';
 import { NavCustom, Footer } from './';
 
 const Layout = ({ children, match, location, history }) => {
@@ -7,8 +8,9 @@ const Layout = ({ children, match, location, history }) => {
         <>
             <NavCustom />
 
-            <div className="container mr-auto">{children}
-                
+            <div className="container mr-auto">
+                {children}
+                <UserCreate></UserCreate>
             </div>
             
             <Footer />
