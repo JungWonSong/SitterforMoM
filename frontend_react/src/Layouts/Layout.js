@@ -10,7 +10,7 @@ const Layout = ({ children, match, location, history }) => {
 
             <div className="container mr-auto">
                 {children}
-                <UserCreate></UserCreate>
+                
             </div>
             
             <Footer />
