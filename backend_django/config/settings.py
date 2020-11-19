@@ -66,8 +66,10 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'corsheaders',
-    'accounts',
     'knox',
+    
+    'accounts',
+    'sitterJobs',
 ]
 
 REST_FRAMEWORK = {

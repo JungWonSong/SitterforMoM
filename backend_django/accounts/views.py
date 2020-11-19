@@ -20,7 +20,7 @@ class LoginView(KnoxLoginView):
         return super(LoginView, self).post(request, format=None)
 
 
-from .serializers import UserSerializer
+from .serializers import UserSerializer, RegisterSerializer
 from .models import User
 from rest_framework import generics
 
@@ -30,4 +30,4 @@ class UserList(generics.ListAPIView):
 
 
 class UserCreate(generics.CreateAPIView):
-    serializer_class = UserSerializer
+    serializer_class = RegisterSerializer

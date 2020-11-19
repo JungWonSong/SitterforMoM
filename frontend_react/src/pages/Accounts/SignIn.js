@@ -92,7 +92,7 @@ const SignIn = () => {
         console.log("form data 확인",JSON.stringify(formData));
         // axios로 통신
         try {
-            const response = await axios.post('/accounts/token/', formData);
+            const response = await axios.post('/accounts/login/', formData);
             // 로그인 완료 후 처리
             const {
                 data: { token: jwtToken },
@@ -110,6 +110,26 @@ const SignIn = () => {
     
     return (
         //TODO: 버튼들 크기에 맞게 정렬하고 가운데로 보내기
+        <div>
+            <form onSubmit={onSubmit}>
+                <div className="form-group">
+                    <label>아이디</label>
+                    <input type="text" className="form-control" name="username" />
+                </div>
+                <div className="form-group">
+                    <label>패스워드</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        name="password"
+                    />
+                </div>
+
+                <button type="submit" className="btn btn-primary">
+                    로그인
+                </button>
+            </form>
+        
         <Card  style={{ width: '18rem' }}>
             <Card.Header variant="pills">로그인</Card.Header>
             <ListGroup variant="flush">
@@ -136,7 +156,7 @@ const SignIn = () => {
                 </ListGroup.Item>
             </ListGroup>
         </Card>
-        
+        </div>
     );
 };
 export default SignIn;
