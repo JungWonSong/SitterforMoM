@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 const Footer = () => {
     return (
         <Navbar fixed="bottom" expand="sm" variant="light" bg="light">
-            <Container>
+            
                 <small className="d-block mb-3 text-muted">
                     <img
                         alt=""
@@ -16,7 +16,7 @@ const Footer = () => {
                    /> &nbsp;
                     &copy; 2020 엄공(momworldq@gmail.com)
                 </small>
-            </Container>
+            
         </Navbar>
     );
 };

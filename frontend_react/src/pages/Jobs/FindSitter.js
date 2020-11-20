@@ -1,56 +1,49 @@
 import React from 'react';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
 
-import axios from 'axios';
-import {setStorageItem, getStorageItem} from 'utils/localstorage';
+import Tab from 'react-bootstrap/Tab';
+import Row from 'react-bootstrap/Row';
+import Nav from 'react-bootstrap/Nav';
+import Col from 'react-bootstrap/Col';
+
+import RegisterSitterJobs from 'components/RegisterSitterJobs';
+import KakaoMap from 'components/KakaoMap';
+import GetSitterJobs from 'components/GetSitterJobs/GetSitterJobs';
 
 const FindSitter = () => {
-
-    const sendJobData = async (e) => {
-        e.preventDefault();
-        // formdata 정리
-        const formData = new FormData(e.target);
-        console.log('form data 확인', JSON.stringify(formData));
-        console.log(getStorageItem('jwtToken'));
-        const AUTH_TOKEN = 'Token ' + getStorageItem('jwtToken');
-        // axios로 통신
-        try {
-            axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-            const response = await (await axios.post('/api/sitterJobs/', formData));
-            // 로그인 완료 후 처리
-            
-            console.log('response 확인 ', JSON.stringify(response));
-            
-        } catch (e) {
-            if (e.response) {
-                const { data } = e.response;
-                console.error(data);
-            }
-        }
-    };
-
-    
-
     return (
-        <div className="container">
-        <form onSubmit={sendJobData}>
-            <div className="form-group">
-                <label>제목</label>
-                <input type="text" className="form-control" name="title" />
-            </div>
-            <div className="form-group">
-                <label>요구사항</label>
-                <textarea className="form-control"
-                    name="contents"></textarea>
-            </div>
-
-            <button type="submit" className="btn btn-primary">
-                저장하기
-            </button>
-        </form>
-    </div>
+        <div>
+        <span>일자리 등록 ></span> <span>시터 찾아요</span> 
+        <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+            <Row>
+                <Col sm={3}>
+                <Nav variant="pills" className="flex-column">
+                    <Nav.Item>
+                        <Nav.Link eventKey="first">내주변 시터</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link eventKey="second">시터 구인 등록</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link eventKey="third">내가 등록한 일자리</Nav.Link>
+                    </Nav.Item>
+                </Nav>
+                </Col>
+                <Col sm={9}>
+                <Tab.Content>
+                    <Tab.Pane eventKey="first">
+                        <KakaoMap/>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="second">
+                        <RegisterSitterJobs/>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="third">
+                        <GetSitterJobs/>
+                    </Tab.Pane>
+                </Tab.Content>
+                </Col>
+            </Row>
+        </Tab.Container>
+        </div>
     );
 
 }

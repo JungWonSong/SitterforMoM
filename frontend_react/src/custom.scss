@@ -14,12 +14,12 @@ $theme-colors: (
 
 .html {
     position: relative;
-    min-height: 100%;
+    //min-height: 100%;
+   
   }
- .body {
-    margin-top: 60px;
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
+  body {
+    margin: 0;
+    font-family: "Lato", sans-serif;
   }
 .footer {
     position: absolute;
@@ -29,10 +29,18 @@ $theme-colors: (
     height: 60px;
     background-color: #f5f5f57e;
   }
+ 
+  * {
+    box-sizing: border-box;
+  }
+
   .container {
-    width: auto;
-    //max-width: 680px;
-    padding: 5 15px;
+    //position: absolute;
+    right: 0;
+    margin: 20px;
+    max-width: 300px;
+    padding: 16px;
+    background-color: white;
   }
   .container .text-muted {
     margin: 20px 0;
@@ -41,6 +49,104 @@ $theme-colors: (
   .navbar-brand {
     padding-top: 0px;
   }
+
+  .bg-img {
+    /* The image used */
+   // background-image: url("./images/bg.JPG");
+  
+    /* Control the height of the image */
+    min-height: 380px;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #4CAF50;
+  color: rgb(73, 168, 168);
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 50%;
+  border-radius: 60%;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+/* Set a style for all buttons */
+button {
+  background-color: rgb(73, 168, 168);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.btColor {
+  padding: 16px;
+  background-color:#f1f1f1;
+}
+
+.alert {
+  text-emphasis-color: #c91d1d;
+}
+
+.kakaobtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+}
+
 
 /* import bootstrap to set changes */
 @import '~bootstrap/scss/bootstrap.scss';

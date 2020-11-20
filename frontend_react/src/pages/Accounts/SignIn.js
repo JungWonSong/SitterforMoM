@@ -1,11 +1,12 @@
 import axios from 'axios';
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import {useHistory} from 'react-router-dom';
 import { setToekn } from 'store';
 import { useAppContext } from 'store';
 import KaKaoBtn from 'react-kakao-login';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import { Link } from 'react-router-dom';
+import icon from '../../images/icon.PNG'
+import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse';
 
 const SignIn = () => {
     const {store, dispatch} = useAppContext();
@@ -84,7 +85,8 @@ const SignIn = () => {
           }
     }
     
-    
+    const [ show, setShow ] = useState(false);
+
     const onSubmit = async (e) => {
         e.preventDefault();
         // formdata 정리
@@ -102,49 +104,36 @@ const SignIn = () => {
             history.push('/');
         } catch (e) {
             if (e.response) {
+                setShow(true);
                 const { data } = e.response;
                 console.error(data);
             }
         }
     };
     
+    
+    
     return (
-        //TODO: 버튼들 크기에 맞게 정렬하고 가운데로 보내기
-        <div>
-            <form onSubmit={onSubmit}>
-                <div className="form-group">
-                    <label>아이디</label>
-                    <input type="text" className="form-control" name="username" />
-                </div>
-                <div className="form-group">
-                    <label>패스워드</label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        name="password"
-                    />
+        
+        <div >
+            <form className="modal-content animate" onSubmit={onSubmit}>
+                <div class="imgcontainer">
+                    <img src={icon} alt="Avatar" className="avatar" />
                 </div>
 
-                <button type="submit" className="btn btn-primary">
-                    로그인
-                </button>
-            </form>
-        
-        <Card  style={{ width: '18rem' }}>
-            <Card.Header variant="pills">로그인</Card.Header>
-            <ListGroup variant="flush">
-                <ListGroup.Item>
-                    <Link>
-                        <img 
-                        src="https://static.nid.naver.com/oauth/big_g.PNG"  
-                        alt=""  
-                        width="100%" />
-                    </Link>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                    <KaKaoBtn 
-                        width="100%"
-                        //styled component 통해 style을 입혀 줄 예정 
+                <div className="container">
+                    <input type="text" placeholder="아이디" name="username" required />
+                    <input type="password" placeholder="패스워드" name="password" required />
+                    {show ? (<p className="alert">비밀번호가 틀렸습니다.</p>) : (<p></p>) }
+                    <button type="submit">로그인</button>
+            
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember" /> 로그인 상태 유지
+                    </label>
+                </div>
+
+            <div className="btColor" >
+                <KaKaoBtn className="kakaobtn" width="100%"  
                         jsKey={'13fdd47dd448192e3f9b6d35e6960217'}
                         //카카오에서 할당받은 jsKey를 입력
                         buttonText='카카오 계정으로 로그인'
@@ -152,10 +141,14 @@ const SignIn = () => {
                         onSuccess={responseKaKao}
                         //성공했을때 불러올 함수로서 fetch해서 localStorage에 저장할 함수를 여기로 저장 
                         getProfile={true}
-                    />
-                </ListGroup.Item>
-            </ListGroup>
-        </Card>
+                    />  
+                <span className="psw"> <a href="#"> 비밀번호 찾기</a></span> &nbsp;&nbsp;
+                <span className="psw"> <a href="#">회원 가입 / </a></span>
+            </div>
+            </form>
+        
+                    
+                
         </div>
     );
 };

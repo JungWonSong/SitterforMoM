@@ -23,17 +23,6 @@ const NavCustom = () => {
                 <NavDropdown.Item href="/Jobs/FindSitter">시터 찾아요</NavDropdown.Item>
                 <NavDropdown.Item href="/Jobs/IamaSitter">시터 할래요</NavDropdown.Item>
             </NavDropdown>
-            
-            <NavDropdown title="안심인증" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/Secure/Insurance">안심보험 인증</NavDropdown.Item>
-                <NavDropdown.Item href="/Secure/Idcard">자격증 인증</NavDropdown.Item>
-                <NavDropdown.Item href="/Secure/Idcard">신분증 인증</NavDropdown.Item>
-                <NavDropdown.Item href="/Secure/Account">계좌 인증</NavDropdown.Item>
-                <NavDropdown.Item href="/Secure/Address">주소 인증</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/Secure/Health">보건 인증</NavDropdown.Item>
-                <NavDropdown.Item href="/Secure/Record">범죄사실 기록 인증</NavDropdown.Item>
-            </NavDropdown>
 
             <NavDropdown title="맘 상담방" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/MomTalk/Worry">육아고민 상담</NavDropdown.Item>
@@ -49,6 +38,16 @@ const NavCustom = () => {
         </Nav>
         
         <Nav justify className="mr-auto" >
+            <NavDropdown title="안심인증" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/Secure/Insurance">안심보험 인증</NavDropdown.Item>
+                <NavDropdown.Item href="/Secure/Idcard">자격증 인증</NavDropdown.Item>
+                <NavDropdown.Item href="/Secure/Idcard">신분증 인증</NavDropdown.Item>
+                <NavDropdown.Item href="/Secure/Account">계좌 인증</NavDropdown.Item>
+                <NavDropdown.Item href="/Secure/Address">주소 인증</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="/Secure/Health">보건 인증</NavDropdown.Item>
+                <NavDropdown.Item href="/Secure/Record">범죄사실 기록 인증</NavDropdown.Item>
+            </NavDropdown>
             <NavDropdown title="고객센터" id="basic-nav-dropdown" >
                 <NavDropdown.Item href="/customercenter/whatisit">어떤 공간인가요?</NavDropdown.Item>
                 <NavDropdown.Item href="/customercenter/howtouse">어떻게 이용하나요?</NavDropdown.Item>
