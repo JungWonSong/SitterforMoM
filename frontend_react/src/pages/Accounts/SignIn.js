@@ -44,9 +44,7 @@ const SignIn = () => {
         <div className="container">
             
             
-                 <div className="row ">
-                                   
-      
+                 <div className="row ">      
                         <div className="col">
                             <Link to="/" alt="" >
                                 <img src={kakobtn} alt=""/>
@@ -66,7 +64,7 @@ const SignIn = () => {
             <div className="bottom-container">
                 <div className="row">
                     <div className="col">
-                        <Link to="/" className="btn text-white">회원 가입 </Link>
+                        <Link to="/accounts/UserJoin" className="btn text-white">회원 가입 </Link>
                     </div>
                     <div class="col">
                         <Link to="/" className="btn text-white">비밀번호 찾기 </Link>

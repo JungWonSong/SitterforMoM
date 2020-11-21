@@ -1,9 +1,9 @@
 import React from 'react';
 
 import axios from 'axios';
-import {getStorageItem} from 'utils/localstorage';
+import {getStorageItem} from 'utils/sessionstorage';
 
-const RegisterSitterJobs = () => {
+const WriteSitterJobs = () => {
 
     const sendJobData = async (e) => {
         e.preventDefault();
@@ -52,4 +52,4 @@ const RegisterSitterJobs = () => {
 
 }
 
-export default RegisterSitterJobs;
+export default WriteSitterJobs;

@@ -20,10 +20,8 @@ const NavCustom = () => {
         <Navbar.Collapse id="responsive-navbar-nav" >
 
         <Nav justify  className="mr-auto" >
-            <NavDropdown title="일자리 등록" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/Jobs/FindSitter">시터 찾아요</NavDropdown.Item>
-                <NavDropdown.Item href="/Jobs/IamaSitter">시터 할래요</NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="/Jobs/FindSitter">시터 찾기</Nav.Link>
+            
 
             <NavDropdown title="맘 상담방" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/MomTalk/Worry">육아고민 상담</NavDropdown.Item>

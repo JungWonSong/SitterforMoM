@@ -3,7 +3,7 @@
 import { createContext, useContext } from 'react';
 import useReducerWithSideEffects, {
     UpdateWithSideEffect} from 'use-reducer-with-side-effects';
-import {setStorageItem, getStorageItem} from 'utils/localstorage';
+import {setStorageItem, getStorageItem} from 'utils/sessionstorage';
 
 
 const AppContext = createContext();
@@ -23,9 +23,8 @@ const reducer = (prevState, action) => {
         const newState = {...prevState, jwtToken:'',isAuthenticated:false};
         return UpdateWithSideEffect(newState, (state, dispatch) => {
             setStorageItem('jwtToken', '');
-            setStorageItem('com.naver.nid.oauth.state_token', '');
         });
-    }
+    } 
 };
 
 //1. 액션 타입, 2. 액션 함수, 3. 리듀서 -> state, dispatch
@@ -37,10 +36,6 @@ export const delToken = () => ({type:DEL_TOKEN});
 export const AppProvider = ({children}) => {
     var jwtToken = getStorageItem('jwtToken', '');
 
-    if(jwtToken.length === 0 ) {
-        jwtToken = getStorageItem('com.naver.nid.oauth.state_token', '');
-    }
-    console.log(jwtToken.length);
     const [store, dispatch] = useReducerWithSideEffects(reducer, {
         jwtToken,
         isAuthenticated: jwtToken.length > 0,

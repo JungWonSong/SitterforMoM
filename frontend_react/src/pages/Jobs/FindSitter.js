@@ -1,48 +1,64 @@
-import React from 'react';
+import React , { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import Tab from 'react-bootstrap/Tab';
-import Row from 'react-bootstrap/Row';
-import Nav from 'react-bootstrap/Nav';
-import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 
-import RegisterSitterJobs from 'components/RegisterSitterJobs';
 import KakaoMap from 'components/KakaoMap';
-import GetSitterJobs from 'components/GetSitterJobs/GetSitterJobs';
+import GetSitterJobs from 'components/GetSitterJobs';
 
 const FindSitter = () => {
+    const [mapView, setMapView] = useState(true);
+    const changeListView = () => {
+        setMapView(false);
+    }
+    
+    const changeMapView = () => {
+        setMapView(true);
+    }
     return (
         <div>
-        <span>일자리 등록 ></span> <span>시터 찾아요</span> 
-        <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-            <Row>
-                <Col sm={3}>
-                <Nav variant="pills" className="flex-column">
-                    <Nav.Item>
-                        <Nav.Link eventKey="first">내주변 시터</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link eventKey="second">시터 구인 등록</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link eventKey="third">내가 등록한 일자리</Nav.Link>
-                    </Nav.Item>
-                </Nav>
-                </Col>
-                <Col sm={9}>
-                <Tab.Content>
-                    <Tab.Pane eventKey="first">
-                        <KakaoMap/>
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="second">
-                        <RegisterSitterJobs/>
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="third">
-                        <GetSitterJobs/>
-                    </Tab.Pane>
-                </Tab.Content>
-                </Col>
-            </Row>
-        </Tab.Container>
+        <Link className="mr-auto" to="/Jobs/FindSitter">
+            <small> 시터 찾기 ></small> 
+        </Link>
+            <Container>
+                    <h1>내 집 주변 시터 일자리</h1>
+                    <p>
+                        회원가입과 안심인증을 한 뒤에는 서비스를 무료로 이용 할 수 있습니다.
+                        집 주변의 시터 구인 구직 정보를 한꺼번에 볼 수 있습니다.
+                        원하는 일자리나 시터에게 메세지를 보내 보세요~
+                    </p>
+
+                    <Link className="mr-auto" to="/Jobs/RegisterSitterJobs">
+                        시터 일자리 등록
+                    </Link>
+            </Container>
+            
+
+            <h1>{mapView}</h1>
+            
+            { mapView ?
+                (
+                    <Button  onClick={changeListView}>목록으로 보기</Button>
+                ) :
+                (
+                    <Button  onClick={changeMapView}>지도로 보기</Button>
+                )
+            
+            } 
+            { mapView ?
+                (
+                   <KakaoMap/> 
+                ) :
+                (
+                   <GetSitterJobs/>
+                )
+            
+            } 
+            
+            
+                
+        
         </div>
     );
 

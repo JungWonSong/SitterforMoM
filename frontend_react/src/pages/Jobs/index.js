@@ -1,2 +1,2 @@
 export { default as FindSitter } from './FindSitter';
-export { default as IamaSitter } from './IamaSitter';
+export { default as RegisterSitterJobs } from './RegisterSitterJobs';

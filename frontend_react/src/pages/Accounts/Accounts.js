@@ -8,6 +8,7 @@ import SitterReview from './SitterReview';
 import MomExpert from './MomExpert';
 import MomReviewer from './MomReviewer';
 import SignOut from './SignOut';
+import UserJoin from './UserJoin';
 
 // 회원 정보에 관한 뷰들을 라우팅
 // 로그인, 회원가입, 마이페이지
@@ -24,6 +25,7 @@ const Accounts = ({ match }) => {
             <Route exact path={match.url +'/momexpert' } component={MomExpert} />
             <Route exact path={match.url +'/momreviewer' } component={MomReviewer} />
             <Route exact path={match.url +'/signout' } component={SignOut} />
+            <Route exact path={match.url +'/UserJoin' } component={UserJoin} />
         </Switch>
     );
 };
