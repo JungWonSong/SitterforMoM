@@ -1,11 +1,12 @@
 /* The following block can be included in a custom.scss */
 
-/* make the customizations */
+/* make the customizations 
 $theme-colors: (
     //"info": rgb(72, 81, 133),
     "info": rgb(47, 129, 129),
     "danger": rgb(73, 168, 168)
 );
+*/
 //NavDropdown
 .hover,
 .focus {
@@ -18,135 +19,121 @@ $theme-colors: (
    
   }
   body {
-    margin: 0;
-    font-family: "Lato", sans-serif;
+    margin: 20;
+    font-family: "Lato", Arial, Helvetica, sans-serif;
   }
-.footer {
-    position: absolute;
-    bottom: 0;
+  * {box-sizing: border-box}
+
+  /* style the container */
+  .container {
+    position: relative;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px 0 30px 0;
+  }
+  
+  /* style inputs and link buttons */
+  input,
+  .btn {
     width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 60px;
-    background-color: #f5f5f57e;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    margin: 5px 0;
+    opacity: 0.85;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 20px;
+    text-decoration: none; /* remove underline from anchors */
+  }
+  
+  input:hover,
+  .btn:hover {
+    opacity: 1;
+  }
+  
+
+  
+  /* style the submit button */
+  input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    //background-color: #45a049;
+    background-color: "primary";
+  }
+  
+  /* Two-column layout */
+  .col {
+    float: left;
+    width: 50%;
+    margin: auto;
+    padding: 0 50px;
+    margin-top: 6px;
   }
  
-  * {
-    box-sizing: border-box;
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
   }
-
-  .container {
-    //position: absolute;
-    right: 0;
-    margin: 20px;
-    max-width: 300px;
-    padding: 16px;
-    background-color: white;
-  }
-  .container .text-muted {
-    margin: 20px 0;
-  }
-
-  .navbar-brand {
-    padding-top: 0px;
-  }
-
-  .bg-img {
-    /* The image used */
-   // background-image: url("./images/bg.JPG");
   
-    /* Control the height of the image */
-    min-height: 380px;
+  /* vertical line */
+  .vl {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    border: 2px solid #ddd;
+    height: 175px;
+  }
   
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
+  /* text inside the vertical line */
+  .inner {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    padding: 8px 10px;
   }
 
-/* Full-width input fields */
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
+.text-center {
+  text-align:center;
 }
-
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-/* Set a style for the submit button */
-.btn {
-  background-color: #4CAF50;
-  color: rgb(73, 168, 168);
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
-
-.btn:hover {
-  opacity: 1;
-}
-
-/* Center the image and position the close button */
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-  position: relative;
-}
-
-img.avatar {
-  width: 50%;
-  border-radius: 60%;
-}
-
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-/* Set a style for all buttons */
-button {
-  background-color: rgb(73, 168, 168);
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-.btColor {
-  padding: 16px;
-  background-color:#f1f1f1;
-}
-
-.alert {
-  text-emphasis-color: #c91d1d;
-}
-
-.kakaobtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 50%; /* Could be more or less, depending on screen size */
-}
-
+  
+  /* hide some text on medium and large screens */
+  .hide-md-lg {
+    display: none;
+  }
+  
+  /* bottom container */
+  .bottom-container {
+    text-align: center;
+    background-color: rgb(119, 119, 119);
+    border-radius: 0px 0px 4px 4px;
+  }
+  
+  /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 650px) {
+    .col {
+      width: 100%;
+      margin-top: 0;
+    }
+    /* hide the vertical line */
+    .vl {
+      display: none;
+    }
+    /* show the hidden text on small screens */
+    .hide-md-lg {
+      display: block;
+      text-align: center;
+    }
+  }
 
 /* import bootstrap to set changes */
 @import '~bootstrap/scss/bootstrap.scss';

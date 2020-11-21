@@ -8,3 +8,4 @@ export { default as SitterReview } from './SitterReview';
 export { default as MomExpert } from './MomExpert';
 export { default as MomReviewer } from './MomReviewer';
 export { default as SignOut } from './SignOut';
+export { default as KakaoLogin } from './KakaoLogin';

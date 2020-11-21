@@ -11,7 +11,8 @@ const NavCustom = () => {
     const {store, dispatch} = useAppContext();
     
     return (
-        <Navbar bg="info" expand="lg" variant="dark"  >
+        <div>
+        <Navbar bg="primary" expand="lg" variant="dark"  >
         <Navbar.Brand href="/">
             엄마들을 위한 공간
         </Navbar.Brand>
@@ -88,13 +89,14 @@ const NavCustom = () => {
                 className="mr-auto"
                 to="/accounts/signin"
             >
-                <Button variant="danger">로그인</Button>
+                <Button variant="outline-light">로그인</Button>
             </Link>
             
         )}  
         </Nav>
         </Navbar.Collapse>     
       </Navbar>
+      </div>
     );
 };
 
