@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 
 
 const UserCreate = () => {
-
+    const history = useHistory();
     // 회원 가입 API 호출
     const userJoin = async (e) => {
         // 1. 기본 동작 막기
@@ -16,7 +16,7 @@ const UserCreate = () => {
             .post('/accounts/join/', formData)
             .then(({ data }) => {
                 console.log(data);
-                useHistory.push('/');
+                history.push('/');
             })
             .catch((e) => {
                 console.error(e);

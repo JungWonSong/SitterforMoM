@@ -34,8 +34,6 @@ const GetSitterJobs = () => {
             }
         }
     };
-
-    
     
     return (
         <div> 

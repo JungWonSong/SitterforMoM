@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React from 'react';
 import {useHistory} from 'react-router-dom';
-import { setToekn } from 'store';
+import { setToekn, setId } from 'store';
 import { useAppContext } from 'store';
+
 import kakobtn from '../../images/kakao_login_medium_wide.png';
 import naverbtn from '../../images/naver_Green.PNG';
 import { Link } from 'react-router-dom';
@@ -21,16 +22,22 @@ const SignIn = () => {
         // axios로 통신
         try {
             const response = await axios.post('/accounts/login/', formData);
+            console.log(response);
             // 로그인 완료 후 처리
             const {
-                data: { token: jwtToken },
+                data: { token: jwtToken,
+                        user: currentUserName }
             } = response;
-            //console.log('토큰 확인 ', jwtToken);
+            
+            const {
+                id : idT
+            } = currentUserName;
+            //console.log('response 확인 ', currentUserName);
             dispatch(setToekn(jwtToken));
+            dispatch(setId(idT));
             history.push('/');
         } catch (e) {
             if (e.response) {
-                
                 const { data } = e.response;
                 console.error(data);
             }

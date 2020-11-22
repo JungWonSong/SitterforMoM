@@ -6,7 +6,7 @@ import {getStorageItem} from 'utils/sessionstorage';
 
 
 const SitterJobDetail = ({match}) => {
-    
+    const AUTH_TOKEN = 'Token ' + getStorageItem('jwtToken');
     useEffect(() => {
         sendJobData();
         return () => {
@@ -15,13 +15,11 @@ const SitterJobDetail = ({match}) => {
     
     const [resData, setResData] = useState();
     const sendJobData = async () => {
-    
-        const AUTH_TOKEN = 'Token ' + getStorageItem('jwtToken');
         // axios로 통신
         try {
             axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;   
             const response = await (await axios.get('/api/sitterJobs/' + match.params.id));
-            //console.log('response 확인 ', JSON.stringify(response));
+           // console.log('response 확인 ', JSON.stringify(response));
             const {
                 data: resData,
             } = response;
@@ -36,9 +34,6 @@ const SitterJobDetail = ({match}) => {
             }
         }
     };
-
-    
-    
     return (
         <div> 
             <Link className="mr-auto" to="/Jobs/FindSitter">

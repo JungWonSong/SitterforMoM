@@ -7,7 +7,7 @@ class UserSerializer(serializers.ModelSerializer):
     # 장고에서 사용하는 데이터를 다루를 클래스 Meta
     class Meta:
         model = User
-        fields = "__all__"
+        fields = ('id', 'username')
 
 
 # Register Serializer

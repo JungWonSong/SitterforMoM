@@ -18,6 +18,13 @@ const reducer = (prevState, action) => {
         return UpdateWithSideEffect(newState, (state, dispatch) => {
             setStorageItem('jwtToken', jwtToken);
         });
+    } else if(type === SET_ID) {
+        //토큰을 저장할때
+        const {payload:id} = action;
+        const newState = {...prevState, id, isAuthenticated:true};
+        return UpdateWithSideEffect(newState, (state, dispatch) => {
+            setStorageItem('id', id);
+        });
     } else if (type === DEL_TOKEN) {
         //토큰을 삭제할때
         const newState = {...prevState, jwtToken:'',isAuthenticated:false};
@@ -29,8 +36,10 @@ const reducer = (prevState, action) => {
 
 //1. 액션 타입, 2. 액션 함수, 3. 리듀서 -> state, dispatch
 const SET_TOKEN = 'app/set_token';
+const SET_ID = 'app/set_id';
 const DEL_TOKEN = 'app/del_token';
 
+export const setId = (id) => ({type:SET_ID, payload:id});
 export const setToekn = (token) => ({type:SET_TOKEN, payload:token});
 export const delToken = () => ({type:DEL_TOKEN});
 export const AppProvider = ({children}) => {
