@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
+
 import axios from 'axios';
 import {getStorageItem} from 'utils/sessionstorage';
 
@@ -39,10 +41,15 @@ const SitterJobDetail = ({match}) => {
     
     return (
         <div> 
-            {resData.title}
-            {resData.contents}
-            {resData.created}
-            {resData.updated}
+            <Link className="mr-auto" to="/Jobs/FindSitter">
+                <small> 시터 찾기 ></small> 
+            </Link>
+            <small>상세보기</small> <br/><br/>
+            <span>{resData && resData.title}</span> &nbsp;<br/>
+            <span>{resData && resData.contents}</span> &nbsp;<br/>
+            <span>{resData && resData.created}</span> &nbsp;<br/>
+            <span>{resData && resData.updated}</span> &nbsp;<br/>
+
         </div>        
     );
 
