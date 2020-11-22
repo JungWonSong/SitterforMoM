@@ -1,6 +1,6 @@
 import React from 'react';
 
-import UserCreate from 'components/UserCreate';
+import UserCreate from 'components/Accounts/UserCreate';
 
 const UserJoin = () => {
     return (

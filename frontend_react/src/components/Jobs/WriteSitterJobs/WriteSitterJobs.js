@@ -1,25 +1,25 @@
 import React from 'react';
+import {useHistory} from 'react-router-dom';
 
 import axios from 'axios';
+
 import {getStorageItem} from 'utils/sessionstorage';
 
 const WriteSitterJobs = () => {
-
+    
     const sendJobData = async (e) => {
         e.preventDefault();
         // formdata 정리
         const formData = new FormData(e.target);
-        console.log('form data 확인', JSON.stringify(formData));
-        console.log(getStorageItem('jwtToken'));
+        //console.log('form data 확인', JSON.stringify(formData));
+        //console.log(getStorageItem('jwtToken'));
         const AUTH_TOKEN = 'Token ' + getStorageItem('jwtToken');
         // axios로 통신
         try {
             axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-            const response = await (await axios.post('/api/sitterJobs/', formData));
-            
-            
-            console.log('response 확인 ', JSON.stringify(response));
-            
+            await (await axios.post('/api/sitterJobs/', formData));
+            //console.log('response 확인 ', JSON.stringify(response));
+            useHistory.push('/');
         } catch (e) {
             if (e.response) {
                 const { data } = e.response;

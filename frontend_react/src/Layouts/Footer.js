@@ -1,6 +1,6 @@
 import icon from '../images/icon.PNG';
 import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
+
 
 const Footer = () => {
     return (

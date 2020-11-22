@@ -12,7 +12,7 @@ const UserCreate = () => {
         // 2. 데이터 준비하기
         const formData = new FormData(e.target);
         // 3. api 호출
-        const response = await axios
+        await axios
             .post('/accounts/join/', formData)
             .then(({ data }) => {
                 console.log(data);

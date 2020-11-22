@@ -1,35 +1,32 @@
-import React, {useEffect} from 'react';
-
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {getStorageItem} from 'utils/sessionstorage';
 
-const GetSitterJobs = () => {
 
+const SitterJobDetail = ({match}) => {
+    
     useEffect(() => {
         sendJobData();
         return () => {
         };
       }, []);
-
+    
+    const [resData, setResData] = useState();
     const sendJobData = async () => {
-        
+    
         const AUTH_TOKEN = 'Token ' + getStorageItem('jwtToken');
         // axios로 통신
         try {
             axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;   
-            const response = await (await axios.get('/api/sitterJobs/'));
-            console.log('response 확인 ', JSON.stringify(response));
+            const response = await (await axios.get('/api/sitterJobs/' + match.params.id));
+            //console.log('response 확인 ', JSON.stringify(response));
             const {
                 data: resData,
             } = response;
-            
-             console.log(resData);
-             for (let i=0; i<resData.length; i++) {
-                console.log(resData[i].id);
-                console.log(resData[i].title);
-                console.log(resData[i].contents);
-             }
-            
+            setResData(resData);
+            //console.log(resData.id);
+           // console.log(resData.title);
+           // console.log(resData.contents);
         } catch (e) {
             if (e.response) {
                 const { data } = e.response;
@@ -41,11 +38,14 @@ const GetSitterJobs = () => {
     
     
     return (
-        <div>  </div>
-
-        
+        <div> 
+            {resData.title}
+            {resData.contents}
+            {resData.created}
+            {resData.updated}
+        </div>        
     );
 
 }
 
-export default GetSitterJobs;
+export default SitterJobDetail;

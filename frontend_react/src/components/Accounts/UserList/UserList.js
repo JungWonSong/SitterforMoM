@@ -8,7 +8,7 @@ class UserList extends Component {
 
     getUsers = () => {
         axios
-            .get('http://127.0.0.1:8000/accounts/')
+            .get('/accounts/userlist')
             .then(({ data }) => {
                 console.log(data);
                 this.setState({
@@ -26,7 +26,7 @@ class UserList extends Component {
 
     render() {
         const { users } = this.state;
-        const user_list = users.map((user) => {
+        users.map((user) => {
             const { id, username } = user;
             return (
                 <li key={id} class>

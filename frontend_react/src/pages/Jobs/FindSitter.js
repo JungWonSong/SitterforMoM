@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
 import KakaoMap from 'components/KakaoMap';
-import GetSitterJobs from 'components/GetSitterJobs';
+import GetSitterJobs from 'components/Jobs/GetSitterJobs';
 
 const FindSitter = () => {
     const [mapView, setMapView] = useState(true);
@@ -32,10 +32,6 @@ const FindSitter = () => {
                     <Link className="mr-auto" to="/Jobs/RegisterSitterJobs">
                         시터 일자리 등록
                     </Link>
-            </Container>
-            
-
-            <h1>{mapView}</h1>
             
             { mapView ?
                 (
@@ -46,17 +42,9 @@ const FindSitter = () => {
                 )
             
             } 
-            { mapView ?
-                (
-                   <KakaoMap/> 
-                ) :
-                (
-                   <GetSitterJobs/>
-                )
+            { mapView ?   <KakaoMap/>  : <GetSitterJobs/> } 
             
-            } 
-            
-            
+            </Container>
                 
         
         </div>

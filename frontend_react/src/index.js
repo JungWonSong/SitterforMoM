@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import UserCreate from './components/UserCreate';
-import UserList from './components/UserList';
-
 // css framework를 사용할 때 index.js에서 임포트 한번만 하면 전체에서 사용 가능하다.
 import './custom.scss';
 //import 'bootstrap/dist/css/bootstrap.min.css';

@@ -1,5 +1,5 @@
 
-import UserCreate from 'components/UserCreate';
+
 import { NavCustom, Footer } from './';
 
 const Layout = ({ children, match, location, history }) => {

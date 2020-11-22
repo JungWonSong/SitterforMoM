@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import WriteSitterJobs from 'components/WriteSitterJobs';
+import WriteSitterJobs from 'components/Jobs/WriteSitterJobs';
 
 const RegisterSitterJobs = () => {
 
