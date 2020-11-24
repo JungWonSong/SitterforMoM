@@ -19,7 +19,7 @@ const GetSitterJobs = () => {
         // axios로 통신
         try {
             axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;   
-            const response = await (await axios.get('/api/sitterJobs/'));
+            const response = await (await axios.get('/api/findSitter/'));
             //console.log('response 확인 ', JSON.stringify(response));
             const {
                 data: resData,

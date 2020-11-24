@@ -13,7 +13,6 @@ class FindSitter(models.Model):
     title = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
     payment_type = models.CharField(max_length=1, choices=PAY_TYPE)
-    models.IntegerField
     kids_ages = models.CharField(max_length=255)
     pay_per_hour = models.IntegerField()
     work_time_per_day = models.IntegerField()
@@ -23,6 +22,7 @@ class FindSitter(models.Model):
     work_start_date = models.DateField()
     work_type = models.CharField(max_length=255)
     cctv_yn = models.IntegerField()
+    send_pic_yn = models.IntegerField()
     required_security_level = models.IntegerField()
     required_conditions = models.TextField(blank=True)
     contents = models.TextField()

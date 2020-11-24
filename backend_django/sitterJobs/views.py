@@ -20,7 +20,14 @@ class ReviewViewSet(viewsets.ModelViewSet):
     serializer_class = ReviewSerializer
     permission_classes = [permissions.IsAuthenticated]
     def get_queryset(self):
-        return Review.objects.all().order_by("-created")
+        qs = Review.objects.all().order_by("-created")
+        jobid = self.request.query_params.get('jobid','')
+        userId = self.request.query_params.get('userId','')
+        if jobid :
+            qs = qs.filter(jobid=jobid)
+        if userId :
+            qs = qs.filter(userId=userId)
+        return qs
 
     def perform_create(self, serializer):
         serializer.save()
@@ -29,7 +36,14 @@ class MessageViewSet(viewsets.ModelViewSet):
     serializer_class = MessageSerializer
     permission_classes = [permissions.IsAuthenticated]
     def get_queryset(self):
-        return Message.objects.all().order_by("-jobid_id")
+        qs = Message.objects.all().order_by("-created")
+        jobid = self.request.query_params.get('jobid','')
+        userId = self.request.query_params.get('userId','')
+        if jobid :
+            qs = qs.filter(jobid=jobid)
+        if userId :
+            qs = qs.filter(userId=userId)
+        return qs
 
     def perform_create(self, serializer):
         serializer.save()

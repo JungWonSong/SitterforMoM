@@ -7,27 +7,27 @@ import {getStorageItem} from 'utils/sessionstorage';
 
 const WriteSitterJobs =  () => {
     const history = useHistory();
-    const [currentId, setId] = useState();
-    const [username, setUsername] = useState();
+    const [userId, setId] = useState();
+    //const [username, setUsername] = useState();
     const AUTH_TOKEN = 'Token ' + getStorageItem('jwtToken');
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect( async ()  => {
         const id = getStorageItem('id');
-        axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-        const response = await axios.get('/accounts/userdetail/' + id);
+        //axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+        //const response = await axios.get('/accounts/userdetail/' + id);
         //console.log(response);
-        const {
-            data: { id: currentId,
-                    username: currentUserName }
-        } = response;
-        setId(currentId);
-        setUsername(currentUserName);
-        console.log("author2:" + currentUserName);
+        //const {
+       //     data: { id: currentId,
+       //             username: currentUserName }
+       // } = response;
+        setId(id);
+        //setUsername(currentUserName);
+        //console.log("author2:" + currentUserName);
         
         return () => {
         };
-      }, [currentId]);
+      }, []);
 
     const sendJobData = async (e) => {
         e.preventDefault();
@@ -40,7 +40,7 @@ const WriteSitterJobs =  () => {
         // axios로 통신
         try {
             axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-            const response = await (await axios.post('/api/sitterJobs/', formData));
+            const response = await (await axios.post('/api/findSitter/', formData));
             //console.log( response);
             const {
                 data: { id: currentId }
@@ -57,14 +57,43 @@ const WriteSitterJobs =  () => {
     return (
         <div className="container">
         <form onSubmit={sendJobData}>
-            <div className="form-group">
-                <input type="hidden" className="form-control" name="authorId" value={currentId} />
-                <input type="hidden" className="form-control" name="username" value={username} />
+        <div className="form-group">
+                <input type="hidden" className="form-control" name="authorId" value={userId} />
                 <label>제목</label>
                 <input type="text" className="form-control" name="title" />
-                <label>자녀 수</label>
-                <input type="number" className="form-control" name="numbers" />
-                <label>요구사항</label>
+                <label>지역</label>
+                <input type="text" className="form-control" name="location" />
+                <label>자녀 나이</label>
+                <input type="text" className="form-control" name="kids_ages" />
+
+                <label>급여지급 방식</label>
+                <input type="text" className="form-control" placeholder="M or W or D" name="payment_type" />
+                <label>시급</label>
+                <input type="number"  name="pay_per_hour" /> 
+
+                <label>희망 근무 시작일</label>
+                <input type="text"  placeholder="표"  name="work_start_date" />
+                <label>월화수목금토일</label>
+                <input type="text"  placeholder="표"  name="work_weeks" /> 
+                <label>일 시작 시간</label>
+                <input type="number" placeholder="표"   name="work_start_time" /> 
+                <label>일 끝나는 시간</label>
+                <input type="number" placeholder="표"   name="work_end_time" /> 
+                <label>하루 중 일하는 시간</label>
+                <input type="number" placeholder="자동 일당계산"  name="work_time_per_day" /> 
+                <label>하는 일 종류</label>
+                <input type="text" placeholder="책읽기, 놀이터가기, 아이랑 함께 돌보기" className="form-control" name="work_type" />
+
+                <label>CCTV 여부</label>
+                <input type="number"   name="cctv_yn" /> <br/>
+                <label>아이 사진 전송 여부</label>
+                <input type="number"   name="send_pic_yn" /> <br/>
+                <label>안심인증 레벨</label>
+                <input type="number" name="required_security_level" /> <br/>
+                <label>필수 요구사항</label>
+                <textarea className="form-control"
+                    name="required_conditions"></textarea>
+                <label>추가 요구사항</label>
                 <textarea className="form-control"
                     name="contents"></textarea>
             </div>
