@@ -35,15 +35,21 @@ const FindSitter = () => {
             
             { mapView ?
                 (
-                    <Button  onClick={changeListView}>목록으로 보기</Button>
+                    <div>
+                        <Button  onClick={changeListView}>목록으로 보기</Button>
+                        <KakaoMap/>
+                    </div>
+                    
                 ) :
                 (
-                    <Button  onClick={changeMapView}>지도로 보기</Button>
+                    <div>
+                        <Button  onClick={changeMapView}>지도로 보기</Button>
+                        <GetSitterJobs/>
+                    </div>
+                    
                 )
             
-            } 
-            { mapView ?   <KakaoMap/>  : <GetSitterJobs/> } 
-            
+            }            
             </Container>
                 
         

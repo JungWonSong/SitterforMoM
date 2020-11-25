@@ -7,13 +7,13 @@ import SitterJob from 'components/Jobs/SitterJob';
 const GetSitterJobs = () => {
     
     useEffect(() => {
-        sendJobData();
+        getJobData();
         return () => {
         };
       }, []);
     
     const [resData, setResData] = useState();
-    const sendJobData = async () => {
+    const getJobData = async () => {
     
         const AUTH_TOKEN = 'Token ' + getStorageItem('jwtToken');
         // axios로 통신

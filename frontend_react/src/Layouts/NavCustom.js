@@ -34,9 +34,7 @@ const NavCustom = () => {
                 <NavDropdown.Item href="/MomReview/Good">이런것이 좋았어요</NavDropdown.Item>
                 <NavDropdown.Item href="/MomReview/Marketing">저희 홍보해주세요</NavDropdown.Item>
             </NavDropdown>
-        </Nav>
-        
-        <Nav justify className="mr-auto" >
+
             <NavDropdown title="안심인증" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/Secure/Insurance">안심보험 인증</NavDropdown.Item>
                 <NavDropdown.Item href="/Secure/Idcard">자격증 인증</NavDropdown.Item>
@@ -59,13 +57,17 @@ const NavCustom = () => {
                 <NavDropdown.Item href="/customercenter/momexpert">엄마 상담전문가는 무엇인가요?</NavDropdown.Item>
                 <NavDropdown.Item href="/customercenter/momreviewer">맘 리뷰어는 무엇인가요?</NavDropdown.Item>
             </NavDropdown>
+        </Nav>
         
+        <Nav justify className="mr-auto" >
+            
+        <Nav.Link href="/accounts/messagebox">메세지 함</Nav.Link>
         {store.isAuthenticated ? (
+            
             <NavDropdown title="프로필" id="basic-nav-dropdown" >
                 <NavDropdown.Item href="/accounts/mypage">My 엄공</NavDropdown.Item>
                 <NavDropdown.Item href="/accounts/myprofile">프로필</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="/accounts/messagebox">메세지 함</NavDropdown.Item>
                 <NavDropdown.Item href="/accounts/secureinfo">안심 인증정보</NavDropdown.Item>
                 <NavDropdown.Item href="/accounts/sitterreview">시터후기</NavDropdown.Item>
                 <NavDropdown.Divider />
@@ -81,6 +83,7 @@ const NavCustom = () => {
                         로그아웃
                 </NavDropdown.Item>
             </NavDropdown>
+
             
         ) : (
             <Link

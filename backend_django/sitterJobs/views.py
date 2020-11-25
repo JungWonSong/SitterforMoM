@@ -21,12 +21,17 @@ class ReviewViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     def get_queryset(self):
         qs = Review.objects.all().order_by("-created")
+        
         jobid = self.request.query_params.get('jobid','')
-        userId = self.request.query_params.get('userId','')
+        from_userId = self.request.query_params.get('from_userId','')
+        to_userId = self.request.query_params.get('to_userId','')
+
         if jobid :
             qs = qs.filter(jobid=jobid)
-        if userId :
-            qs = qs.filter(userId=userId)
+        if from_userId :
+            qs = qs.filter(from_userId=from_userId)
+        if to_userId :
+            qs = qs.filter(to_userId=to_userId)
         return qs
 
     def perform_create(self, serializer):
@@ -37,12 +42,17 @@ class MessageViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     def get_queryset(self):
         qs = Message.objects.all().order_by("-created")
+        
         jobid = self.request.query_params.get('jobid','')
-        userId = self.request.query_params.get('userId','')
+        from_userId = self.request.query_params.get('from_userId','')
+        to_userId = self.request.query_params.get('to_userId','')
+
         if jobid :
             qs = qs.filter(jobid=jobid)
-        if userId :
-            qs = qs.filter(userId=userId)
+        if from_userId :
+            qs = qs.filter(from_userId=from_userId)
+        if to_userId :
+            qs = qs.filter(to_userId=to_userId)
         return qs
 
     def perform_create(self, serializer):
