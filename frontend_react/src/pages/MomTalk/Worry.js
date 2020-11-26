@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+
 class Worry extends Component {
     render() {
         return (
             <div>
-                육아 고민을 올리면 육아 전문가에게 답변을 받을 수 있다.
-                <br />
-                육아 전문가란 친절한 댓글을 많이 남기고 사람들의 추천을 많이 받은 사람
+            <Tabs defaultActiveKey="inBox" id="uncontrolled-tab-example">
+                <Tab eventKey="inBox" title="육아고민 상담">
+                   
+                </Tab>
+                <Tab eventKey="course" title="진로고민 상담">
+                   
+                </Tab>
+                <Tab eventKey="talk" title="수다방">
+                   
+                </Tab>
+            </Tabs>
             </div>
         );
     }

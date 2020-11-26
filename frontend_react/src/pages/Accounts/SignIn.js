@@ -60,7 +60,7 @@ const SignIn = () => {
                 </div>
                         
                 <div className="col">
-                    <input type="text" className="username" name="username" placeholder="전화번호를 압력하세요" required />
+                    <input type="text" className="username" name="username" placeholder="전화번호를 입력하세요" required />
                     <input type="password" className="password" name="password" placeholder="비밀번호를 입력하세요" required />
                     <Button type="submit">로그인</Button>
                     {show ? (<Alert variant="danger">아이디/비밀번호를 확인하세요.</Alert>) : (<br/>)}

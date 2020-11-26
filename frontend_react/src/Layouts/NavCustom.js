@@ -21,19 +21,8 @@ const NavCustom = () => {
 
         <Nav justify  className="mr-auto" >
             <Nav.Link href="/Jobs/FindSitter">시터 찾기</Nav.Link>
-            
-
-            <NavDropdown title="맘 상담방" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/MomTalk/Worry">육아고민 상담</NavDropdown.Item>
-                <NavDropdown.Item href="/MomTalk/Course">진로고민 상담</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/MomTalk/NoMeaning">수다방</NavDropdown.Item>
-            </NavDropdown>
-
-            <NavDropdown title="맘 리뷰어" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/MomReview/Good">이런것이 좋았어요</NavDropdown.Item>
-                <NavDropdown.Item href="/MomReview/Marketing">저희 홍보해주세요</NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="/MomTalk/Worry">맘 상담방</Nav.Link>
+            <Nav.Link href="/MomReview/Marketing">맘 리뷰어</Nav.Link>
 
             <NavDropdown title="안심인증" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/Secure/Insurance">안심보험 인증</NavDropdown.Item>

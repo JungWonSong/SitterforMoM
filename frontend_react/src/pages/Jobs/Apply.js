@@ -71,6 +71,7 @@ function Apply ({match}) {
             <small>시터 지원하기</small> <br/><br/>
 
             <form onSubmit={sendMessage}>
+                <input type="hidden" className="form-control" name="is_read" value="false" />
                 <input type="hidden" className="form-control" name="jobid" value={jobId} />
                 <input type="hidden" className="form-control" name="to_userId" value={resData && resData.authorId} />
                 <input type="hidden" className="form-control" name="from_userId" value={userId} />

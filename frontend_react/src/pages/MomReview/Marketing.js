@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 class Marketing extends Component {
     render() {
         return (
             <div>
-                홍보를 원하는 곳에서 올리면 엄마들이 선택해서 
-                해당 업체 가보고 리뷰를 올린다.
+                <Tabs defaultActiveKey="inBox" id="uncontrolled-tab-example">
+                <Tab eventKey="inBox" title="이런것이 좋았어요">
+                   
+                </Tab>
+                <Tab eventKey="course" title="저희 홍보해주세요">
+                   
+                </Tab>
+            </Tabs>
             </div>
         );
     }

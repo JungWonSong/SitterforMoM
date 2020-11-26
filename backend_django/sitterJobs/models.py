@@ -21,8 +21,8 @@ class FindSitter(models.Model):
     work_end_time = models.IntegerField()
     work_start_date = models.DateField()
     work_type = models.CharField(max_length=255)
-    cctv_yn = models.IntegerField()
-    send_pic_yn = models.IntegerField()
+    cctv_yn = models.BooleanField()
+    send_pic_yn = models.BooleanField()
     required_ages = models.CharField(max_length=255)
     required_security_level = models.IntegerField()
     required_conditions = models.TextField(blank=True)
@@ -34,6 +34,7 @@ class FindSitter(models.Model):
 
 
 class Review(models.Model):
+    is_read = models.BooleanField()
     from_userId = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     to_userId = models.IntegerField()
     jobid = models.ForeignKey(FindSitter, on_delete=models.PROTECT)
@@ -45,6 +46,7 @@ class Review(models.Model):
         return self.liked_level
 
 class Message(models.Model):
+    is_read = models.BooleanField()
     from_userId = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     to_userId = models.IntegerField()
     jobid = models.ForeignKey(FindSitter, on_delete=models.PROTECT)

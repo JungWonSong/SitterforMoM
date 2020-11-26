@@ -8,16 +8,35 @@ import Button from 'react-bootstrap/Button';
 const SitterJobDetail = ({match}) => {
     const [sameAuthor, setSameAuthor] = useState();
     const [resData, setResData] = useState();
+    const [applyNum, setApplyNum] = useState();
     const AUTH_TOKEN = 'Token ' + getStorageItem('jwtToken');
     const loginId = getStorageItem('id');
     
     useEffect(() => {
         getJobData();
+        getApplyNum();
         return () => {
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
     
+    const getApplyNum = async (e) => {
+        try {
+            axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;   
+            const response = await (await axios.get('/api/message/?jobid=' + match.params.id));
+            //console.log('response 확인 ', JSON.stringify(response));
+            const {
+                data: applyData,
+            } = response;
+            //console.log('length:', applyData.length);
+            setApplyNum(applyData.length);
+        } catch (e) {
+            if (e.response) {
+                const { data } = e.response;
+                console.error(data);
+            }
+        }
+    };
        
     const getJobData = async (e) => {
         // axios로 통신
@@ -54,6 +73,7 @@ const SitterJobDetail = ({match}) => {
             {sameAuthor ? (<Button variant="Primary">수정하기</Button>) 
                         : (<Link className="mr-auto" to={`/Jobs/Apply/${resData && resData.id}`}>지원하기</Link>)}
 
+            <p>현재 지원자 수 : {applyNum}</p>
             <br/><br/>
             <span>{resData && resData.title}</span> &nbsp;<br/>
             <span>{resData && resData.authorId}</span> &nbsp;<br/>
