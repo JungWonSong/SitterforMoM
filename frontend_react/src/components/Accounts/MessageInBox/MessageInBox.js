@@ -19,7 +19,7 @@ const MessageInBox = () => {
     const getMessage = async (e) => {
         try {
             axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;   
-            const response = await (await axios.get('/api/message/?to_userId=' + loginId));
+            const response = await (await axios.get('/sitterJobs/message/?to_userId=' + loginId));
             //console.log('response 확인 ', JSON.stringify(response));
             const {
                 data: resData,

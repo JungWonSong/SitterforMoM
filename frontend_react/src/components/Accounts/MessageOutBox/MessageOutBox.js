@@ -19,7 +19,7 @@ const MessageOutBox = () => {
     const getMessage = async (e) => {
         try {
             axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;   
-            const response = await (await axios.get('/api/message/?from_userId=' + loginId));
+            const response = await (await axios.get('/sitterJobs/message/?from_userId=' + loginId));
             //console.log('response 확인 ', JSON.stringify(response));
             const {
                 data: resData,

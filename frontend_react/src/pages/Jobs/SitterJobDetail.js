@@ -17,13 +17,14 @@ const SitterJobDetail = ({match}) => {
         getApplyNum();
         return () => {
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
     
     const getApplyNum = async (e) => {
         try {
             axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;   
-            const response = await (await axios.get('/api/message/?jobid=' + match.params.id));
+            const response = await (await axios.get('/sitterJobs/message/?jobid=' + match.params.id));
             //console.log('response 확인 ', JSON.stringify(response));
             const {
                 data: applyData,
@@ -43,7 +44,7 @@ const SitterJobDetail = ({match}) => {
         
         try {
             axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;   
-            const response = await (await axios.get('/api/findSitter/' + match.params.id));
+            const response = await (await axios.get('/sitterJobs/findSitter/' + match.params.id));
            // console.log('response 확인 ', JSON.stringify(response));
             const {
                 data: resData,

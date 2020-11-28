@@ -23,7 +23,7 @@ function Apply ({match}) {
         
         try {
             axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;   
-            const response = await (await axios.get('/api/findSitter/' + match.params.id));
+            const response = await (await axios.get('/sitterJobs/findSitter/' + match.params.id));
            // console.log('response 확인 ', JSON.stringify(response));
             const {
                 data: resData,

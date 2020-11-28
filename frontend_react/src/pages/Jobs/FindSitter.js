@@ -26,7 +26,7 @@ const FindSitter = () => {
                     <p>
                         회원가입과 안심인증을 한 뒤에는 서비스를 무료로 이용 할 수 있습니다.
                         집 주변의 시터 구인 구직 정보를 한꺼번에 볼 수 있습니다.
-                        원하는 일자리나 시터에게 메세지를 보내 보세요~
+                        원하는 일자리나 시터에게 메시지를 보내 보세요~
                     </p>
 
                     <Link className="mr-auto" to="/Jobs/RegisterSitterJobs">

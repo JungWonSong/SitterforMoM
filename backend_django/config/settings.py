@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     
     'accounts',
     'sitterJobs',
+    'momTalks',
 ]
 
 REST_FRAMEWORK = {

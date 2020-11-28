@@ -19,11 +19,11 @@ const SignIn = () => {
         e.preventDefault();
         // formdata 정리
         const formData = new FormData(e.target);
-        console.log("form data 확인",JSON.stringify(formData));
+        console.log("form data 확인",formData);
         // axios로 통신
         try {
             const response = await axios.post('/accounts/login/', formData);
-            console.log(response);
+            //console.log(response);
             // 로그인 완료 후 처리
             const {
                 data: { token: jwtToken,
