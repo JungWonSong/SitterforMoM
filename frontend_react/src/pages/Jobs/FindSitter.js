@@ -37,7 +37,7 @@ const FindSitter = () => {
                 (
                     <div>
                         <Button  onClick={changeListView}>목록으로 보기</Button>
-                        <KakaoMap/>
+                        
                     </div>
                     
                 ) :

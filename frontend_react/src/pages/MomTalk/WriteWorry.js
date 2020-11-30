@@ -3,6 +3,9 @@ import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 
 import {getStorageItem} from 'utils/sessionstorage';
+import { Card, CardBody, Form, FormInput, Button } from "shards-react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const WriteWorry = () => {
     const AUTH_TOKEN = 'Token ' + getStorageItem('jwtToken');
@@ -11,6 +14,8 @@ const WriteWorry = () => {
     const sendMessage = async (e) => {
         e.preventDefault();
         try {
+            console.log( e.target.title.value );
+            console.log( e.target.contents );
             const formData = new FormData(e.target);
             axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
             const response = await (await axios.post('/momTalks/worry/', formData));
@@ -42,16 +47,17 @@ const WriteWorry = () => {
                 엄마들의 공간에서 비슷한 고민을 이미 경험한 엄마들에게 상담을 받아 보세요~
                 상담내용은 익명으로 표시됩니다.
             </p>
-            <form onSubmit={sendMessage}>
-                <input type="hidden" className="form-control" name="authorId" value={userId} />
-                <label>제목</label>
-                <input type="text" className="form-control" name="title" />
-                <label>내용</label>
-                <input type="text" className="form-control" name="contents" />
-                <button type="submit" className="btn btn-primary">
-                    저장하기
-                </button>
-            </form>
+            <Card small className="mb-3">
+                <CardBody>
+                    <Form className="add-new-post" onSubmit={sendMessage}>
+                    <FormInput size="lg" className="mb-3" placeholder="제목" id="title" />
+                    <ReactQuill className="add-new-post__editor mb-1" id="contents" />
+                    <Button type="submit"  size="sm" className="ml-auto">
+                         저장하기
+                    </Button>
+                    </Form>
+                </CardBody>
+            </Card>
         </div>
     );
 

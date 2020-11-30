@@ -1,12 +1,12 @@
 /* The following block can be included in a custom.scss */
 
-/* make the customizations 
+// make the customizations 
 $theme-colors: (
     //"info": rgb(72, 81, 133),
-    "info": rgb(47, 129, 129),
-    "danger": rgb(73, 168, 168)
+    //"primary": rgb(136, 192, 63),
+    //"danger": rgb(73, 168, 168)
 );
-*/
+
 //NavDropdown
 .hover,
 .focus {
@@ -103,5 +103,12 @@ $theme-colors: (
       text-align: center;
     }
   }
+
+.add-new-post__editor .ql-container,
+.add-new-post__editor .ql-editor {
+  min-height: 400px;
+}
+
 /* import bootstrap to set changes */
+@import "shards-dashboards.1.1.0.min.css";
 @import '~bootstrap/scss/bootstrap.scss';
