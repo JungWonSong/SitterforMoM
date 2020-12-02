@@ -18,12 +18,16 @@ const SignIn = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
         // formdata 정리
-        const formData = new FormData(e.target);
-        console.log("form data 확인",formData);
+        let formData = new FormData(); 
+        formData.append('username', e.target.username.value); 
+        formData.append('password',e.target.password.value);
+
+       // console.log("form data 확인",e.target.username.value);
+        //console.log("form data 확인",e.target.password.value);
         // axios로 통신
         try {
             const response = await axios.post('/accounts/login/', formData);
-            //console.log(response);
+           // console.log(response);
             // 로그인 완료 후 처리
             const {
                 data: { token: jwtToken,

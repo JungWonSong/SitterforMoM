@@ -12,7 +12,7 @@ const NavCustom = () => {
     
     return (
         <div>
-        <Navbar bg="primary" expand="lg" variant="dark"  >
+        <Navbar bg="bg-white" expand="lg"   >
         <Navbar.Brand href="/">
             엄마들을 위한 공간
         </Navbar.Brand>
@@ -24,16 +24,6 @@ const NavCustom = () => {
             <Nav.Link href="/MomTalk/Worry">맘 상담방</Nav.Link>
             <Nav.Link href="/MomReview/Marketing">맘 리뷰어</Nav.Link>
 
-            <NavDropdown title="안심인증" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/Secure/Insurance">안심보험 인증</NavDropdown.Item>
-                <NavDropdown.Item href="/Secure/Idcard">자격증 인증</NavDropdown.Item>
-                <NavDropdown.Item href="/Secure/Idcard">신분증 인증</NavDropdown.Item>
-                <NavDropdown.Item href="/Secure/Account">계좌 인증</NavDropdown.Item>
-                <NavDropdown.Item href="/Secure/Address">주소 인증</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/Secure/Health">보건 인증</NavDropdown.Item>
-                <NavDropdown.Item href="/Secure/Record">범죄사실 기록 인증</NavDropdown.Item>
-            </NavDropdown>
             <NavDropdown title="고객센터" id="basic-nav-dropdown" >
                 <NavDropdown.Item href="/customercenter/whatisit">어떤 공간인가요?</NavDropdown.Item>
                 <NavDropdown.Item href="/customercenter/howtouse">어떻게 이용하나요?</NavDropdown.Item>
@@ -49,37 +39,27 @@ const NavCustom = () => {
         </Nav>
         
         <Nav justify className="mr-auto" >
-            
-        <Nav.Link href="/accounts/messagebox">메세지 함</Nav.Link>
+            <a className="nav-link-icon text-center nav-link" href="/" >
+                <div className="nav-link-icon__wrapper">
+                    <i className="material-icons">mail_outline</i>
+                    <span className="badge-custom badge-danger badge-pill">2</span>
+                </div>
+            </a>
         {store.isAuthenticated ? (
             
-            <NavDropdown title="프로필" id="basic-nav-dropdown" >
-                <NavDropdown.Item href="/accounts/mypage">My 엄공</NavDropdown.Item>
-                <NavDropdown.Item href="/accounts/myprofile">프로필</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/accounts/secureinfo">안심 인증정보</NavDropdown.Item>
-                <NavDropdown.Item href="/accounts/sitterreview">시터후기</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/accounts/momexpert">상담전문가 활동</NavDropdown.Item>
-                <NavDropdown.Item href="/accounts/momreviewer">맘 리뷰어 활동</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item 
-                    href="/accounts/signout" 
-                    onClick={(e) => {
-                    e.preventDefault();
-                    dispatch(delToken());
-                    }}>
-                        로그아웃
-                </NavDropdown.Item>
-            </NavDropdown>
-
-            
+            <Link
+                className="mr-auto"
+                to="/accounts/mypage"
+            >
+                <Button variant="outline-dark">My 엄공<i className="material-icons">settings</i></Button>
+            </Link>
+         
         ) : (
             <Link
                 className="mr-auto"
                 to="/accounts/signin"
             >
-                <Button variant="outline-light">로그인</Button>
+                <Button variant="outline-dark">로그인<i className="material-icons">login</i></Button>
             </Link>
             
         )}  
