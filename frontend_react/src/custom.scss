@@ -130,6 +130,13 @@ $theme-colors: (
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.nav-link {
+  font-size: medium;
+  font-weight: bolder;
+}
+.nav-link-icon i.material-icons {
+  font-size: 2rem;
+}
 /* import bootstrap to set changes */
 @import "shards-dashboards.1.1.0.min.css";
 @import '~bootstrap/scss/bootstrap.scss';

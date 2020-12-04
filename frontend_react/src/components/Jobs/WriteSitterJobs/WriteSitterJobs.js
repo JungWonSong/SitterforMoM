@@ -14,20 +14,24 @@ const WriteSitterJobs =  () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect( async ()  => {
         const id = getStorageItem('id');
-        //axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-        //const response = await axios.get('/accounts/userdetail/' + id);
-        //console.log(response);
-        //const {
-       //     data: { id: currentId,
-       //             username: currentUserName }
-       // } = response;
         setId(id);
-        //setUsername(currentUserName);
-        //console.log("author2:" + currentUserName);
+        
         
         return () => {
         };
       }, []);
+
+    function openZipCode() {
+        // eslint-disable-next-line no-undef
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+                // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+                document.getElementById("location").value = data.query;
+                console.log(data);
+            }
+        }).open();
+    }
 
     const sendJobData = async (e) => {
         e.preventDefault();
@@ -59,10 +63,9 @@ const WriteSitterJobs =  () => {
         <form onSubmit={sendJobData}>
         <div className="form-group">
                 <input type="hidden" className="form-control" name="authorId" value={userId} />
-                <label>제목</label>
-                <input type="text" className="form-control" name="title" />
-                <label>지역</label>
-                <input type="text" className="form-control" name="location" />
+                
+                <label>돌봄지역</label>
+                <input type="text" onClick={openZipCode} className="form-control" id="location" name="location"  placeholder="지역명을 검색하세요"/>
                 <label>자녀 나이</label>
                 <input type="text" className="form-control" name="kids_ages" />
 
@@ -90,6 +93,9 @@ const WriteSitterJobs =  () => {
                 <input type="number"   name="send_pic_yn" /> <br/>
                 <label>안심인증 레벨</label>
                 <input type="number" name="required_security_level" /> <br/>
+
+                <label>제목</label>
+                <input type="text" className="form-control" name="title" />
                 <label>필수 요구사항</label>
                 <textarea className="form-control"
                     name="required_conditions"></textarea>

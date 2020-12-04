@@ -10,7 +10,7 @@ const RegisterSitterJobs = () => {
     return (
         <div className="container">
             <Link className="mr-auto" to="/Jobs/FindSitter">
-                <small> 시터 찾기 ></small> 
+                <small className="small"> 시터 찾기 ></small> 
             </Link>
             <small>시터 일자리 등록</small>
             
