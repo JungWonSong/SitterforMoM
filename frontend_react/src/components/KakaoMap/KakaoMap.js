@@ -41,7 +41,7 @@ const KakaoMap = () => {
 
     return (
         
-        <div  id='myMap' style={{
+        <div className="container-fluid" id='myMap' style={{
             width: '98%%', 
             height: '700px'
         }}></div>

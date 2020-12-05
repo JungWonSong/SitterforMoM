@@ -1,6 +1,7 @@
 /* The following block can be included in a custom.scss */
 
 // make the customizations 
+
 $theme-colors: (
     //"info": rgb(72, 81, 133),
     //"primary": rgb(136, 192, 63),
@@ -28,14 +29,70 @@ $theme-colors: (
     font-family: Arial, Helvetica, sans-serif;
   }
 
-  /* style the container */
+    /* style the container */
   .container {
     position: relative;
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px 0 30px 0;
   }
+  .bg {
+    /* The image used */
+    background-image: url("images/login.png");
   
+    /* Full height */
+    //height: 100%;
+    width:1200px;
+    height:500px;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  @media screen and (max-width: 650px) {
+    .bg {
+      /* The image used */
+      background-image: url("images/mobile_login.png");
+    
+      /* Full height */
+      //height: 100%;
+      width:100%;
+      height:100%;
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+
+
+  .form-login {
+    position: absolute;
+    top: 20%;
+    left: 55%;
+    margin: -50px 0 0 -50px;
+    border-radius: 5px;
+    //background-color: #f2f2f2;
+    //padding: 20px 0 30px 0;
+    max-width: 864px;
+    padding: 0;
+  }
+  @media screen and (max-width: 650px) {
+    .form-login {
+      position: relative;
+      top: 0%;
+      left: 0%;
+      margin: 0 0 0 0;
+      border-radius: 5px;
+      //background-color: #f2f2f2;
+      //padding: 20px 0 30px 0;
+      //max-width: 864px;
+      //padding: 0;
+    }
+  }
+  
+    
   /* style inputs and link buttons */
   input,
   .btn {
@@ -55,62 +112,10 @@ $theme-colors: (
   .btn:hover {
     opacity: 1;
   }
-    
-  /* style the submit button */
-  input[type=submit] {
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-  }
-  
-  input[type=submit]:hover {
-    background-color: #45a049;
-  }
-  
-  /* Two-column layout */
-  .col {
-    float: left;
-    width: 50%;
-    margin: auto;
-    padding: 0 50px;
-    margin-top: 6px;
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  
-  
-  /* bottom container */
-  .bottom-container {
-    text-align: center;
-    background-color: #666;
-    border-radius: 0px 0px 4px 4px;
-  }
 
-  .small {
-    color : #212529;
-  }
-  
-  /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
-  @media screen and (max-width: 650px) {
-    .col {
-      width: 100%;
-      margin-top: 0;
-    }
-    /* hide the vertical line */
-    .vl {
-      display: none;
-    }
-    /* show the hidden text on small screens */
-    .hide-md-lg {
-      display: block;
-      text-align: center;
-    }
-  }
+hr {
+  height: 30px;
+}
 
 .add-new-post__editor .ql-container,
 .add-new-post__editor .ql-editor {
@@ -128,6 +133,15 @@ $theme-colors: (
   vertical-align: top;
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Graphik Web", Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  vertical-align: baseline;
 }
 
 .nav-link {

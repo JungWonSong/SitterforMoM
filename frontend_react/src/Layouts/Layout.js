@@ -8,7 +8,7 @@ const Layout = ({ children, match, location, history }) => {
         <>
             <NavCustom />
 
-            <div className="container mr-auto">
+            <div className="container-fluid">
                 {children}
                 
             </div>

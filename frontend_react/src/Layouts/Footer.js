@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <Navbar fixed="bottom" expand="sm" variant="light" bg="light">
             
-                <small className="d-block mb-3 text-muted">
+                <small className="d-block mb-3 text-muted copyright">
                     <img
                         alt=""
                         src={icon}
@@ -14,9 +14,8 @@ const Footer = () => {
                         height="30"
                         className="d-inline-block align-top"
                    /> &nbsp;
-                    &copy; 2020 엄공(momworldq@gmail.com)
+                    Copyright &copy; 2020 엄공 (momworldq@gmail.com)
                 </small>
-            
         </Navbar>
     );
 };

@@ -1,7 +1,6 @@
 import React , { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
 import KakaoMap from 'components/KakaoMap';
@@ -17,9 +16,8 @@ const FindSitter = () => {
         setMapView(true);
     }
     return (
-        <div>
-        
-            <Container>
+        <div className="container-fluid">
+ 
                     <h3>내 집 주변 시터 일자리</h3>
                     <p>
                         회원가입과 안심인증을 한 뒤에는 서비스를 무료로 이용 할 수 있습니다. <br/>
@@ -48,7 +46,7 @@ const FindSitter = () => {
                 )
             
             }            
-            </Container>
+
                 
         
         </div>
