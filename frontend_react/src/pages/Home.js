@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import KakaoMap from '../components/KakaoMap';
@@ -6,8 +7,6 @@ import Carousel from 'react-bootstrap/Carousel';
 import home1 from 'images/home1.png';
 
 class Home extends Component {
-
-    
 
     getSomeItem = () => {
         axios
@@ -21,6 +20,7 @@ class Home extends Component {
     };
     componentDidMount() {
         //this.getSomeItem();
+     
     }
     render() {
         //const { history } = this.props;
@@ -33,6 +33,8 @@ class Home extends Component {
                         className="d-block w-100 "
                         src={home1}
                         alt="First slide"
+
+                        height="50%"
                     />
                 </Carousel.Item>
                 <Carousel.Item>
@@ -40,6 +42,7 @@ class Home extends Component {
                         className="d-block w-100 "
                         src={home1}
                         alt="Third slide"
+                        height="50%"
                     />
                 </Carousel.Item>
                 <Carousel.Item>
@@ -47,13 +50,14 @@ class Home extends Component {
                         className="d-block w-100 "
                         src={home1}
                         alt="Third slide"
+                        height="50%"
                     />
                 </Carousel.Item>
                 </Carousel>
 
             <br/><br/>
             <KakaoMap />
-                
+            <div id="token-result"></div>    
         </div>
         );
     }

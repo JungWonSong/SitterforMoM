@@ -1,5 +1,6 @@
+
 import axios from 'axios';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import { setToekn, setId } from 'store';
 import { useAppContext } from 'store';
@@ -9,10 +10,81 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 
-const SignIn = () => {
+const SignIn = ({match}) => {
     const {dispatch} = useAppContext();
     const history = useHistory();
     const [show, setShow] = useState(false);
+   
+    useEffect(() => {
+      //console.log(match);
+     
+      return () => {
+      };
+      
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    
+    const loginWithNaver= async (e) => {
+        try {
+            axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';  
+            axios.defaults.headers.common['Accept'] = '*/*'; 
+            axios.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,PATCH,OPTIONS';
+            axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept';
+            axios.defaults.headers.common['access-control-allow-origin'] = '*';  
+            axios.defaults.headers.common['access-control-allow-credentials'] = 'true';
+            const response = await axios.get('allauth/naver/login/');
+            console.log(response);
+            // 로그인 완료 후 처리
+            console.log(response.data);
+            console.log(response.status);
+            console.log(response.statusText);
+            console.log(response.headers);
+            console.log(response.config);
+            console.log("###################");
+            } catch (e) {
+                console.log("###################"+ e);
+                if (e.response) {
+                    const { data } = e.response;
+                    console.log(e.response.data);
+                    console.log(e.response.status);
+                    console.log(e.response.statusText);
+                    console.log(e.response.headers);
+                    console.log(e.response.config);
+                    console.error(data);
+                }
+            }
+    }
+    const loginWithKakao= async (e) => {
+      try {
+        axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';  
+        axios.defaults.headers.common['Accept'] = '*/*'; 
+        axios.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,PATCH,OPTIONS';
+        axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept';
+        axios.defaults.headers.common['access-control-allow-origin'] = '*';  
+        axios.defaults.headers.common['access-control-allow-credentials'] = 'true';
+        const response = await axios.get('kakao/');
+        console.log(response);
+        // 로그인 완료 후 처리
+        console.log("###################");
+        console.log(response.data);
+        console.log(response.status);
+        console.log(response.statusText);
+        console.log(response.headers);
+        console.log(response.config);
+        } catch (e) {
+            console.log("###################" + e);
+            if (e.response) {
+                const { data } = e.response;
+                console.log(e.response.data);
+                    console.log(e.response.status);
+                    console.log(e.response.statusText);
+                    console.log(e.response.headers);
+                    console.log(e.response.config);
+                console.error(data);
+            }
+        }
+    }
+   
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -52,11 +124,7 @@ const SignIn = () => {
     
     
     return (
-        <div>
-
-        
-        <div className="box-login">
-        </div>
+        <div className="container-fluid">
         <div className="bg">
             <Form className="form-login" onSubmit={onSubmit}>
                 <Form.Group controlId="username">
@@ -72,17 +140,16 @@ const SignIn = () => {
                 로그인
                 </Button>
                 <hr />
-                <Button variant="warning" >
+                <Button variant="warning" onClick={loginWithKakao} >
                 카카오 로그인
                 </Button>
-                <Button variant="success" >
+                <Button variant="success" onClick={loginWithNaver}>
                 네이버 로그인
                 </Button>
                 <br /> <br /> 
-                <Link to="" >회원가입 /</Link> <Link to="" >비밀번호 찾기</Link>
+                <Link to="/accounts/UserJoin" >회원가입 /</Link> <Link to="" >비밀번호 찾기</Link>
             </Form>
         </div>    
-        
         </div>
         
     );

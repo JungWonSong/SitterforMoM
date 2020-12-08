@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 
@@ -9,15 +9,15 @@ import "react-quill/dist/quill.snow.css";
 
 const WriteWorry = () => {
     const AUTH_TOKEN = 'Token ' + getStorageItem('jwtToken');
-    const userId = getStorageItem('id');
+    //const userId = getStorageItem('id');
     const history = useHistory();
-    const [contentValue, setContentValue] = useState('test');
+    //const [contentValue, setContentValue] = useState('test');
 
     const sendMessage = async (e) => {
         e.preventDefault();
         try {
             console.log( e.target.title.value );
-            console.log( contentValue );
+           // console.log( contentValue );
             const formData = new FormData(e.target);
             axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
             const response = await (await axios.post('/momTalks/worry/', formData));
@@ -53,7 +53,7 @@ const WriteWorry = () => {
                 <CardBody>
                     <Form className="add-new-post" onSubmit={sendMessage}>
                     <FormInput size="lg" className="mb-3" placeholder="제목" id="title" />
-                    <ReactQuill className="add-new-post__editor mb-1" value={contentValue}  />
+                    <ReactQuill className="add-new-post__editor mb-1" />
                     <Button type="submit"  size="sm" className="ml-auto">
                          저장하기
                     </Button>

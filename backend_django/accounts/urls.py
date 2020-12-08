@@ -11,6 +11,9 @@ user_detail = UserList.as_view(
 
 
 urlpatterns = [
+     # 소셜 로그인
+    path('kakao/', kakao_login, name='kakao_login'),
+    path('kakao/callback/', kakao_callback, name='kakao_callback'),
     path('allauth/', include('allauth.urls')),
     path('join/', UserCreate.as_view()),
     path('userlist/', user_list, name="user_list"),

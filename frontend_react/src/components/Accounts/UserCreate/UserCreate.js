@@ -2,6 +2,9 @@ import axios from 'axios';
 
 import {useHistory} from 'react-router-dom';
 
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+//import Alert from 'react-bootstrap/Alert';
 
 const UserCreate = () => {
     const history = useHistory();
@@ -24,13 +27,28 @@ const UserCreate = () => {
             });
     };
     return (
-        <form action="" onSubmit={userJoin}>
-            <input type="text" name="username" placeholder="전화번호를 입력하세요."  />
-            <input type="text" name="email" placeholder="이메일을 입력하세요." />
-            <input type="text" name="address" placeholder="주소를 입력하세요." />
-            <input type="password" name="password" placeholder="비밀번호를 입력하세요." />
-            <button type="submit">회원가입</button>
-        </form>
+        <div className="bg">
+
+            <Form className="form-login" onSubmit={userJoin}>
+
+               
+                <Form.Group controlId="username">
+                <Form.Control type="text" placeholder="아이디"  />
+                </Form.Group>
+
+                <Form.Group controlId="password">
+                <Form.Control type="password" placeholder="비밀번호"  />
+                </Form.Group>
+               
+                <Button variant="outline-dark" type="submit">
+                회원가입
+                </Button>
+                
+                
+                
+            </Form>
+        </div>
+        
     );
 };
 

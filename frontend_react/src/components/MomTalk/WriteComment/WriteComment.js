@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import { Link, useHistory } from 'react-router-dom';
+//import { Link, useHistory } from 'react-router-dom';
 import {getStorageItem} from 'utils/sessionstorage';
 
 const WriteComment = ({ id }) => {
     const AUTH_TOKEN = 'Token ' + getStorageItem('jwtToken');
     const loginId = getStorageItem('id');
-    const history = useHistory();
+    //const history = useHistory();
     
     const sendComments = async (e) => {
         e.preventDefault();

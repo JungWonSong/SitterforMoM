@@ -11,6 +11,7 @@ import { Home } from './pages';
 
 
 const PageRouter = () => {
+    
     return (
         <BrowserRouter>
             <Layout>

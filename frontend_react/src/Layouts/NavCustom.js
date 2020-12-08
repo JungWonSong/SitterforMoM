@@ -1,4 +1,4 @@
-import { delToken } from '../store';
+//import { delToken } from '../store';
 import { useAppContext } from '../store';
 import { Link } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 
 
 const NavCustom = () => {
-    const {store, dispatch} = useAppContext();
+    const {store} = useAppContext();
     
     return (
         <div>

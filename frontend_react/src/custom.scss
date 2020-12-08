@@ -3,8 +3,8 @@
 // make the customizations 
 
 $theme-colors: (
-    //"info": rgb(72, 81, 133),
-    //"primary": rgb(136, 192, 63),
+    "warning": rgb(238, 222, 82),
+    "success": rgb(123, 214, 70),
     //"danger": rgb(73, 168, 168)
 );
 
@@ -42,7 +42,7 @@ $theme-colors: (
   
     /* Full height */
     //height: 100%;
-    width:1200px;
+    width:800px;
     height:500px;
     /* Center and scale the image nicely */
     background-position: center;

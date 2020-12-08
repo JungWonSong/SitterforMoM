@@ -2,7 +2,6 @@
 /*global kakao*/
 import React, { useEffect } from 'react';
 
-const { kakao } = window;
 
 const KakaoMap = () => {
     useEffect(() => {
@@ -31,12 +30,12 @@ const KakaoMap = () => {
             } 
         }
 
-        function displayMarker(place) {
-            let marker = new kakao.maps.Marker({
-                map: map,
-                position: new kakao.maps.LatLng(place.y, place.x) 
-            });
-        }
+        //function displayMarker(place) {
+       //     let marker = new kakao.maps.Marker({
+       //         map: map,
+       //         position: new kakao.maps.LatLng(place.y, place.x) 
+       //     });
+       // }
     }, []);
 
     return (
