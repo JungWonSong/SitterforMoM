@@ -1,4 +1,5 @@
 
+/*global Kakao */
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
@@ -10,81 +11,86 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 
+
+
+
 const SignIn = ({match}) => {
     const {dispatch} = useAppContext();
     const history = useHistory();
     const [show, setShow] = useState(false);
    
     useEffect(() => {
-      //console.log(match);
-     
+        //const script = document.createElement('script')
+        //script.src = 'https://developers.kakao.com/sdk/js/kakao.js'
+        //script.async = true
+    
+        if(!Kakao.isInitialized()) {
+            Kakao.init('13fdd47dd448192e3f9b6d35e6960217');
+        }
+        // SDK 초기화 여부를 판단합니다.
+        console.log(Kakao.isInitialized());
+
+        try {
+            
+        }catch (err) {
+            console.error(err);
+        }
+        
       return () => {
       };
       
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
+    const loginWithKakao= async (e) => {
+        try{
+            if(!Kakao) {
+                console.log("no kakao");
+            }
+            Kakao.Auth.login({
+                success:(auth) => {
+                    console.log("login success! " + auth);
+                    //console.log( auth);
+                    if (!Kakao.Auth.getAccessToken()) {
+                        Kakao.Auth.setAccessToken(auth);
+                    }
+                    
+                    if (Kakao.Auth.getAccessToken()) {
+                        console.log('logged in.');
+                        Kakao.API.request({
+                            url: '/v2/user/me',
+                            success: function(response) {
+                                console.log(response);
+                            },
+                            fail: function(error) {
+                                console.log(error);
+                            }
+                        });
+                        
+                    }
+                },
+                fail: (err) => {
+                    console.error(err);
+                }
+            })
+        } catch(err) {
+            console.log(err);
+        }
+    }
+
     const loginWithNaver= async (e) => {
         try {
-            axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';  
-            axios.defaults.headers.common['Accept'] = '*/*'; 
-            axios.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,PATCH,OPTIONS';
-            axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept';
-            axios.defaults.headers.common['access-control-allow-origin'] = '*';  
-            axios.defaults.headers.common['access-control-allow-credentials'] = 'true';
-            const response = await axios.get('allauth/naver/login/');
+             const response = await axios.get('allauth/naver/login/', { withCredentials: true });
             console.log(response);
             // 로그인 완료 후 처리
-            console.log(response.data);
-            console.log(response.status);
-            console.log(response.statusText);
-            console.log(response.headers);
-            console.log(response.config);
-            console.log("###################");
             } catch (e) {
                 console.log("###################"+ e);
                 if (e.response) {
                     const { data } = e.response;
-                    console.log(e.response.data);
-                    console.log(e.response.status);
-                    console.log(e.response.statusText);
-                    console.log(e.response.headers);
-                    console.log(e.response.config);
                     console.error(data);
                 }
             }
     }
-    const loginWithKakao= async (e) => {
-      try {
-        axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';  
-        axios.defaults.headers.common['Accept'] = '*/*'; 
-        axios.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,PATCH,OPTIONS';
-        axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept';
-        axios.defaults.headers.common['access-control-allow-origin'] = '*';  
-        axios.defaults.headers.common['access-control-allow-credentials'] = 'true';
-        const response = await axios.get('kakao/');
-        console.log(response);
-        // 로그인 완료 후 처리
-        console.log("###################");
-        console.log(response.data);
-        console.log(response.status);
-        console.log(response.statusText);
-        console.log(response.headers);
-        console.log(response.config);
-        } catch (e) {
-            console.log("###################" + e);
-            if (e.response) {
-                const { data } = e.response;
-                console.log(e.response.data);
-                    console.log(e.response.status);
-                    console.log(e.response.statusText);
-                    console.log(e.response.headers);
-                    console.log(e.response.config);
-                console.error(data);
-            }
-        }
-    }
-   
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -97,7 +103,7 @@ const SignIn = ({match}) => {
         //console.log("form data 확인",e.target.password.value);
         // axios로 통신
         try {
-            const response = await axios.post('/accounts/login/', formData);
+            const response = await axios.post('/api/accounts/login/', formData);
            // console.log(response);
             // 로그인 완료 후 처리
             const {
@@ -121,9 +127,12 @@ const SignIn = ({match}) => {
         }
     };
     
+    // eslint-disable-next-line no-undef
+    
     
     
     return (
+
         <div className="container-fluid">
         <div className="bg">
             <Form className="form-login" onSubmit={onSubmit}>
@@ -140,7 +149,7 @@ const SignIn = ({match}) => {
                 로그인
                 </Button>
                 <hr />
-                <Button variant="warning" onClick={loginWithKakao} >
+                <Button variant="warning" onClick={loginWithKakao}>
                 카카오 로그인
                 </Button>
                 <Button variant="success" onClick={loginWithNaver}>

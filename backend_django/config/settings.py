@@ -30,7 +30,14 @@ chars = ''.join([string.ascii_letters, string.digits, string.punctuation]).repla
 SECRET_KEY = ''.join([random.SystemRandom().choice(chars) for i in range(50)])
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    '127.0.0.1:3000', 
+    'localhost:3000', 
+    'localhost:8000',
+    'localhost',
+    'www.momworld.shop', 
+    'momworld.shop'
+]
 from datetime import timedelta
 from rest_framework.settings import api_settings
 REST_KNOX = {
@@ -44,13 +51,12 @@ REST_KNOX = {
 #CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
 #CORS_ALLOW_CREDENTIALS = True
 ##CORS
-CORS_ORIGIN_ALLOW_ALL=True
-CORS_ALLOW_CREDENTIALS = True
-from corsheaders.defaults import default_methods
+CORS_ORIGIN_ALLOW_ALL=False
+CORS_ALLOW_CREDENTIALS = False
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000", "http://127.0.0.1:3000",
+    "http://www.momworld.shop", "http://momworld.shop"]
 
-CORS_ALLOW_METHODS = list(default_methods) + [
-    'retrieve',
-]
 AUTH_USER_MODEL = "accounts.User"
 # Application definition
 
@@ -61,15 +67,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'django.contrib.sites',
-
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.kakao',
-    'allauth.socialaccount.providers.naver',
-    'allauth.socialaccount.providers.google',
 
     'rest_framework',
     'corsheaders',
@@ -109,9 +107,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
-                 # `allauth` needs this from django
-                'django.template.context_processors.request',
             ],
         },
     },
@@ -174,29 +169,9 @@ AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
 
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
 
 )
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
-}
 
-#django 어디민 페이지가 안나올때 반드시 할것!
-#https://antilibrary.org/779
-SITE_ID = 2
-SOCIAL_AUTH_URL_NAMESPACE = 'social'
-LOGIN_REDIRECT_URL = '/' # 로그인 후 리디렉션할 페이지
-ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # 로그아웃 후 리디렉션 할 페이지
-ACCOUNT_LOGOUT_ON_GET = True # 로그아웃 버튼 클릭 시 자동 로그아웃
 
 
