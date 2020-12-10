@@ -12,6 +12,8 @@ class User(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    nickname = models.CharField(max_length=50)
+    image = models.ImageField(upload_to="products/%Y/%m/%d", blank=True)
     gender = models.IntegerField()
     address  = models.CharField(max_length=50)
     birth_date = models.DateField(null=True, blank=True)

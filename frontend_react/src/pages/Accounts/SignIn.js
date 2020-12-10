@@ -30,12 +30,6 @@ const SignIn = ({match}) => {
         // SDK 초기화 여부를 판단합니다.
         console.log(Kakao.isInitialized());
 
-        try {
-            
-        }catch (err) {
-            console.error(err);
-        }
-        
       return () => {
       };
       
@@ -60,7 +54,10 @@ const SignIn = ({match}) => {
                         Kakao.API.request({
                             url: '/v2/user/me',
                             success: function(response) {
-                                console.log(response);
+                                var sPerson = JSON.stringify(response);
+                                var oPerson = JSON.parse(sPerson);
+                                console.log(oPerson.kakao_account.profile.nickname);
+                                console.log(oPerson.kakao_account.profile.profile_image_url);
                             },
                             fail: function(error) {
                                 console.log(error);
@@ -76,7 +73,7 @@ const SignIn = ({match}) => {
         } catch(err) {
             console.log(err);
         }
-    }
+    };
 
     const loginWithNaver= async (e) => {
         try {
@@ -90,7 +87,7 @@ const SignIn = ({match}) => {
                     console.error(data);
                 }
             }
-    }
+    };
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -152,6 +149,7 @@ const SignIn = ({match}) => {
                 <Button variant="warning" onClick={loginWithKakao}>
                 카카오 로그인
                 </Button>
+     
                 <Button variant="success" onClick={loginWithNaver}>
                 네이버 로그인
                 </Button>

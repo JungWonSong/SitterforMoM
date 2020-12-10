@@ -35,6 +35,7 @@ ALLOWED_HOSTS = [
     'localhost:3000', 
     'localhost:8000',
     'localhost',
+    '127.0.0.1',
     'www.momworld.shop', 
     'momworld.shop'
 ]
@@ -51,8 +52,8 @@ REST_KNOX = {
 #CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
 #CORS_ALLOW_CREDENTIALS = True
 ##CORS
-CORS_ORIGIN_ALLOW_ALL=False
-CORS_ALLOW_CREDENTIALS = False
+CORS_ORIGIN_ALLOW_ALL=True
+CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000", "http://127.0.0.1:3000",
     "http://www.momworld.shop", "http://momworld.shop"]
@@ -72,7 +73,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'knox',
-    
     'accounts',
     'sitterJobs',
     'momTalks',
@@ -168,8 +168,6 @@ AUTHENTICATION_BACKENDS = (
 
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
-
-
 )
 
 
