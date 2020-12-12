@@ -1,5 +1,6 @@
 
 /*global Kakao */
+/*global naver */
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
@@ -24,17 +25,80 @@ const SignIn = ({match}) => {
         //script.src = 'https://developers.kakao.com/sdk/js/kakao.js'
         //script.async = true
     
-        if(!Kakao.isInitialized()) {
-            Kakao.init('13fdd47dd448192e3f9b6d35e6960217');
-        }
-        // SDK 초기화 여부를 판단합니다.
-        console.log(Kakao.isInitialized());
+        initKakao();
+
+        initAndCallBackNaver();
 
       return () => {
       };
       
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    const initKakao = () => {
+        if(!Kakao.isInitialized()) {
+            Kakao.init('13fdd47dd448192e3f9b6d35e6960217');
+        }
+        // SDK 초기화 여부를 판단합니다.
+        console.log(Kakao.isInitialized());
+    };
+
+    const initAndCallBackNaver = () => {
+        var naverLogin = new naver.LoginWithNaverId(
+            {
+                clientId: "C_WSFE0_AkdBhEgMki93",
+                callbackUrl: "http://localhost:3000/accounts/signin",
+                isPopup: false, /* 팝업을 통한 연동처리 여부 */
+                loginButton: {color: "green", type: 3, height: 60} /* 로그인 버튼의 타입을 지정 */
+            }
+        );
+        
+        /* 설정정보를 초기화하고 연동을 준비 */
+        naverLogin.init();
+
+        /* (4) Callback의 처리. 정상적으로 Callback 처리가 완료될 경우 main page로 redirect(또는 Popup close) */
+		window.addEventListener('load', function () {
+            naverLogin.getLoginStatus(function (status) {
+                if (status) {
+                    var id			= naverLogin.user.getId();
+                    var nm			= naverLogin.user.getName();
+                    var gender		= naverLogin.user.getGender();
+                    var birthday	= naverLogin.user.getBirthday();
+                    var email		= naverLogin.user.getEmail();
+                    
+                    var isRequire = true;
+                    if(nm === 'undefined' || nm === null || nm === '') {
+                        alert('이름은 필수 정보입니다. 정보제공을 동의해주세요.');
+                        isRequire = false;
+                    } else if(email === 'undefined' || email === null || email === '') {
+                        alert('이메일은 필수 정보입니다. 정보제공을 동의해주세요.');
+                        isRequire = false;
+                    }
+                    
+                    
+                    if(isRequire === false) {
+                        naverLogin.reprompt(); // 필수정보를 얻지 못 했을 때 다시 정보제공 동의 화면으로 이동
+                        return;	
+                    }
+                    
+                    console.log(id);
+                    console.log(nm);
+                    console.log(gender);
+                    console.log(birthday);
+                    console.log(email);
+
+                    var username = document.getElementById("username");
+                    username.value = id;
+                                //console.log(username.value);
+                    var password = document.getElementById("password");
+                    password.value = id;
+                    onSubmit();
+                } else {
+                    console.log("callback 처리에 실패하였습니다.");
+                }
+            });
+        });
+    };
     
     const loginWithKakao= async (e) => {
         try{
@@ -58,6 +122,13 @@ const SignIn = ({match}) => {
                                 var oPerson = JSON.parse(sPerson);
                                 console.log(oPerson.kakao_account.profile.nickname);
                                 console.log(oPerson.kakao_account.profile.profile_image_url);
+
+                                var username = document.getElementById("username");
+                                username.value = oPerson.id;
+                                //console.log(username.value);
+                                var password = document.getElementById("password");
+                                password.value = oPerson.id;
+                                onSubmit();
                             },
                             fail: function(error) {
                                 console.log(error);
@@ -75,26 +146,13 @@ const SignIn = ({match}) => {
         }
     };
 
-    const loginWithNaver= async (e) => {
-        try {
-             const response = await axios.get('allauth/naver/login/', { withCredentials: true });
-            console.log(response);
-            // 로그인 완료 후 처리
-            } catch (e) {
-                console.log("###################"+ e);
-                if (e.response) {
-                    const { data } = e.response;
-                    console.error(data);
-                }
-            }
-    };
 
     const onSubmit = async (e) => {
-        e.preventDefault();
+        if(e) e.preventDefault();
         // formdata 정리
         let formData = new FormData(); 
-        formData.append('username', e.target.username.value); 
-        formData.append('password',e.target.password.value);
+        formData.append('username', document.getElementById("username").value); 
+        formData.append('password',document.getElementById("password").value);
 
        // console.log("form data 확인",e.target.username.value);
         //console.log("form data 확인",e.target.password.value);
@@ -149,9 +207,13 @@ const SignIn = ({match}) => {
                 <Button variant="warning" onClick={loginWithKakao}>
                 카카오 로그인
                 </Button>
-     
-                <Button variant="success" onClick={loginWithNaver}>
+                <div id="naverIdLogin">
+                <Button variant="success">
                 네이버 로그인
+                </Button>
+                </div>
+                <Button variant="danger" >
+                구글 로그인
                 </Button>
                 <br /> <br /> 
                 <Link to="/accounts/UserJoin" >회원가입 /</Link> <Link to="" >비밀번호 찾기</Link>

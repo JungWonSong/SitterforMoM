@@ -38,8 +38,8 @@ class LoginView(KnoxLoginView):
 
 
 
-from .serializers import UserSerializer, RegisterSerializer
-from .models import User
+from .serializers import UserSerializer, RegisterSerializer, ProfileSerializer
+from .models import User, Profile
 from rest_framework import viewsets, generics
 import sys 
 
@@ -52,3 +52,11 @@ class UserCreate(generics.CreateAPIView):
     serializer_class = RegisterSerializer
     permission_classes = [permissions.AllowAny]
 
+class ProfileViewSet(viewsets.ModelViewSet):
+    serializer_class = ProfileSerializer
+    permission_classes = [permissions.AllowAny]
+    def get_queryset(self):
+        return Profile.objects.all().order_by("-created")
+
+    def perform_create(self, serializer):
+        serializer.save()
