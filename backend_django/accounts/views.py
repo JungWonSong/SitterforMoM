@@ -46,7 +46,14 @@ import sys
 class UserList(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
-    queryset = User.objects.all()  # 데이터를 필터링하기 전 단계
+    def get_queryset(self):
+        qs = User.objects.all()  # 데이터를 필터링하기 전 단계
+
+        userId = self.request.query_params.get('userId','')
+        if userId :
+            qs = qs.filter(id=userId)
+
+        return qs
 
 class UserCreate(generics.CreateAPIView):
     serializer_class = RegisterSerializer
@@ -56,7 +63,13 @@ class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     permission_classes = [permissions.AllowAny]
     def get_queryset(self):
-        return Profile.objects.all().order_by("-created")
+        qs = Profile.objects.all().order_by("-created")
+
+        user = self.request.query_params.get('user','')
+        if user :
+            qs = qs.filter(user=user)
+
+        return qs
 
     def perform_create(self, serializer):
         serializer.save()

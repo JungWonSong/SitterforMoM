@@ -1,6 +1,6 @@
 /* daum */
 
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import axios from 'axios';
 
 import {useHistory} from 'react-router-dom';
@@ -9,12 +9,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-
+import { setToekn, setId } from 'store';
+import { useAppContext } from 'store';
 
 const UserCreate = () => {
-
-    const [address, setAddressr] = useState();
-    const [userId, setUserId] = useState();
+    const {dispatch} = useAppContext();
 
     useEffect(() => {
         //const script = document.createElement('script')
@@ -37,7 +36,10 @@ const UserCreate = () => {
             // 예제를 참고하여 다양한 활용법을 확인해 보세요.
             var zipcode = document.getElementById("zipcode");
             zipcode.value = data.zonecode;
-                setAddressr(data.address);
+
+            var address1 = document.getElementById("address1");
+            address1.value = data.address;
+               
                 //console.log(data);
             }
         }).open();
@@ -58,34 +60,36 @@ const UserCreate = () => {
         
     };
 
-    const InsertProfile = async (e) => {
-
-        let formData = new FormData(); 
-        formData.append('user', 2); 
-        formData.append('nickname', document.getElementById("nickname").value); 
-        formData.append('image',document.getElementById("profile_image").value);
-        formData.append('zipcode', document.getElementById("zipcode").value);
-        formData.append('address1', document.getElementById("address1").value);
-        formData.append('address2', document.getElementById("address2").value);
-        formData.append('phone_number', document.getElementById("phone_number").value);
+    const InsertProfile = async (userId) => {
         console.log(userId);
-        console.log(document.getElementById("nickname").value);
-        console.log(document.getElementById("profile_image").value);
-        console.log(document.getElementById("zipcode").value);
-        console.log(document.getElementById("address1").value);
-        console.log(document.getElementById("address2").value);
-        console.log(document.getElementById("phone_number").value);
+        let formData = new FormData(); 
+        formData.append('user', userId); 
+        formData.append('nickname',document.getElementById("nickname").value);
+        formData.append('zipcode',document.getElementById("zipcode").value);
+        formData.append('address1',document.getElementById("address1").value);
+        formData.append('address2',document.getElementById("address2").value);
+        formData.append('phone_number',document.getElementById("phone_number").value);
+        formData.append('image',document.getElementById("profile_image").files[0]);
 
         await axios
-        .post('/api/accounts/profile/', formData)
-        .then(({ data }) => {
-            console.log(data);
-            
-        })
-        .catch((e) => {
-            console.error(e);
-            alert(e);
-        });
+            .post('/api/accounts/profile/', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                  }
+            })
+            .then(({ data }) => {
+               // console.log(data);
+            })
+            .catch((e) => {
+                console.error(e);
+                if (e.response) {
+                    const { data } = e.response;
+                    console.error(data);
+                }
+                return false;
+            });
+
+            return true;
     };
 
     const Login = async (e) => {
@@ -97,8 +101,17 @@ const UserCreate = () => {
             await axios
             .post('/api/accounts/login/', formData)
             .then(({ data }) => {
-                console.log(data);
+                //console.log(data);
+                const {
+                    token: jwtToken,
+                    user: currentUserName
+                } = data;
                 
+                const {
+                    id : idT
+                } = currentUserName;
+                dispatch(setToekn(jwtToken));
+                dispatch(setId(idT));
             })
             .catch((e) => {
                 console.error(e);
@@ -107,6 +120,10 @@ const UserCreate = () => {
     
             } catch (e) {
                 console.error(e);
+                if (e.response) {
+                    const { data } = e.response;
+                    console.error(data);
+                }
             }
     };
 
@@ -125,20 +142,22 @@ const UserCreate = () => {
             .post('/api/accounts/join/', formData)
             .then(({ data }) => {
                 console.log(data.id);
-                setUserId(data.id);
-                InsertProfile();
-                Login()
+                if(InsertProfile(data.id))
+                    Login()
                 history.push('/');
             })
             .catch((e) => {
                 console.error(e);
-                alert(e);
+                if (e.response) {
+                    const { data } = e.response;
+                    console.error(data);
+                }
             });
     };
     return (
         <Container fluid="md">
      
-            <Form className="form-join" onSubmit={InsertProfile}>
+            <Form className="form-join" onSubmit={userJoin}>
 
                <div className="brick-join">
                     <p className="join-title">회원가입</p>
@@ -148,13 +167,13 @@ const UserCreate = () => {
                     
                     <Form.Row className="justify-content-md-center">
                     <Col >
-                        <Form.Control id="username" type="text" placeholder="아이디는 전화번호로 입력해주세요~"  />
+                        <Form.Control id="username" type="text" placeholder="아이디를 입력해주세요."  />
                     </Col> 
                     </Form.Row >
 
                     <Form.Row className="justify-content-md-center">
                     <Col >
-                        <Form.Control id="password" type="password" placeholder="비밀번호를 입력해 주세요. (8~16자/ 문자, 숫자, 특수문자 혼용)" autoComplete="off"/>
+                        <Form.Control id="password" type="password" placeholder="비밀번호를 입력해 주세요. (8~16자/ 문자, 숫자, 특수문자 혼용)" />
                     </Col> 
                     </Form.Row>
 
@@ -176,12 +195,12 @@ const UserCreate = () => {
                     <div className="imageCircle" id="profile_image_div" >
                         <div className="imageJoin">
                             <input type="file" accept="image/*" id="profile_image" onChange={changeImage}/>
-                            <i className="icon-camera_icon " role="presentation" ></i> 
+                            
                         </div>
                     </div> 
                     </Col> 
                     <Col >
-                        <Form.Control id="nickname" type="text" placeholder="닉네임을 입력해주세요."  />
+                        <Form.Control id="nickname" type="text" placeholder="실명을 입력해주세요."  />
                     </Col> 
                     </Form.Row>
                     <Form.Row className="justify-content-md-center ">
@@ -206,7 +225,7 @@ const UserCreate = () => {
                     <Form.Control id="zipcode" className="mb-2 mr-sm-2" placeholder="우편번호 찾기"  onClick={getZipCode} readOnly />
                     </Col>
                     <Col>
-                    <Form.Control id="address1" className="mb-2 mr-sm-2"  type="text" onClick={getZipCode} placeholder="주소를 선택해주세요." value={address} readOnly />
+                    <Form.Control id="address1" className="mb-2 mr-sm-2"  type="text" onClick={getZipCode} placeholder="주소를 선택해주세요." readOnly />
                     </Col>
                     </Form.Row>    
 

@@ -5,6 +5,8 @@ import KakaoMap from '../components/KakaoMap';
 
 import Carousel from 'react-bootstrap/Carousel';
 import home1 from 'images/home1.png';
+import home2 from 'images/home2.png';
+import home3 from 'images/home3.png';
 
 class Home extends Component {
 
@@ -40,7 +42,7 @@ class Home extends Component {
                 <Carousel.Item>
                     <img
                         className="d-block w-100 "
-                        src={home1}
+                        src={home2}
                         alt="Third slide"
                         height="50%"
                     />
@@ -48,7 +50,7 @@ class Home extends Component {
                 <Carousel.Item>
                     <img
                         className="d-block w-100 "
-                        src={home1}
+                        src={home3}
                         alt="Third slide"
                         height="50%"
                     />

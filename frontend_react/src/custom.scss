@@ -301,6 +301,55 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 .nav-link-icon i.material-icons {
   font-size: 2rem;
 }
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .profile_section {
+    margin: 0 auto;
+  }
+}
+
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .profile_section {
+    width: 90%;
+  }
+}
+
+
+
+.profile_brick {
+  padding: 42px 20px 30px;
+  text-align: center;
+}
+
+.profile_aside {
+  top: 0;
+  left: 0;
+  width: 250px;
+  position: absolute;
+  background: #fff;
+  border: 1px solid #e1e2e3;
+  border-radius: 3px;
+}
+
+.profile_section {
+    position: relative;
+    max-width: 1060px;
+    padding: 0 0 90px;
+}
+
+.profile {
+  position: relative;
+}
+
+.profile_title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+  padding: 50px 0 20px;
+}
+
+
 /* import bootstrap to set changes */
 @import "shards-dashboards.1.1.0.min.css";
 @import '~bootstrap/scss/bootstrap.scss';
