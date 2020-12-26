@@ -44,7 +44,7 @@ const WriteSitterJobs =  () => {
         // axios로 통신
         try {
             axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-            const response = await (await axios.post('/sitterJobs/findSitter/', formData));
+            const response = await (await axios.post('/api/sitterJobs/findSitter/', formData));
             //console.log( response);
             const {
                 data: { id: currentId }

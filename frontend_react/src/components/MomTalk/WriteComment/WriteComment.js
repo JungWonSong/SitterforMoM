@@ -14,7 +14,7 @@ const WriteComment = ({ id }) => {
         try {
             const formData = new FormData(e.target);
             axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-            await (await axios.post('/momTalks/comment/', formData));
+            await (await axios.post('/api/momTalks/comment/', formData));
             window.location.replace('/MomTalk/WorryDetail/' + id );
         } catch (e) {
             if (e.response) {

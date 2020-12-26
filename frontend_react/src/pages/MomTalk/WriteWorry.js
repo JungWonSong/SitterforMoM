@@ -1,26 +1,44 @@
-import React from 'react';
+/*global Quill */
+import React, {useEffect} from 'react';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 
 import {getStorageItem} from 'utils/sessionstorage';
 import { Card, CardBody, Form, FormInput, Button } from "shards-react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+
 
 const WriteWorry = () => {
     const AUTH_TOKEN = 'Token ' + getStorageItem('jwtToken');
     //const userId = getStorageItem('id');
     const history = useHistory();
     //const [contentValue, setContentValue] = useState('test');
+    var quill = null;
+    useEffect(() => {
+        if(quill === null) {
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            quill = new Quill('#editor', {
+            theme: 'snow'
+          });
+        }
+        
+    
+      return () => {
+      };
+      
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
 
     const sendMessage = async (e) => {
         e.preventDefault();
         try {
-            console.log( e.target.title.value );
-           // console.log( contentValue );
-            const formData = new FormData(e.target);
+
+           let formData = new FormData(); 
+           formData.append('authorId', getStorageItem('id')); 
+           formData.append('title', document.getElementById("title").value); 
+           formData.append('contents',quill.root.innerHTML);
             axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-            const response = await (await axios.post('/momTalks/worry/', formData));
+            const response = await (await axios.post('/api/momTalks/worry/', formData));
             //console.log(response);
             const {
                 data: { id: idT }
@@ -30,7 +48,8 @@ const WriteWorry = () => {
             if (e.response) {
                 const { data } = e.response;
                 console.error(data);
-                alert(data);
+                alert("로그인 하세요.");
+                history.push('/accounts/signin');
             }
         }
         
@@ -53,7 +72,8 @@ const WriteWorry = () => {
                 <CardBody>
                     <Form className="add-new-post" onSubmit={sendMessage}>
                     <FormInput size="lg" className="mb-3" placeholder="제목" id="title" />
-                    <ReactQuill className="add-new-post__editor mb-1" />
+                    <div id="editor">
+                    </div>
                     <Button type="submit"  size="sm" className="ml-auto">
                          저장하기
                     </Button>

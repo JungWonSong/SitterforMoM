@@ -18,7 +18,7 @@ class Profile(models.Model):
         ('S', 'Self'),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    nickname = models.CharField(max_length=50)
+    nickname = models.CharField(max_length=50, unique=False)
     image = models.ImageField(upload_to="products/%Y/%m/%d", blank=True)
     gender = models.IntegerField(blank=True, null=True)
     zipcode =  models.IntegerField()

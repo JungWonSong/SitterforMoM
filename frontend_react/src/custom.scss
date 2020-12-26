@@ -349,7 +349,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   padding: 50px 0 20px;
 }
 
+.ql-editor > * {
+  cursor: text;
+  //height: 500px;
+}
 
 /* import bootstrap to set changes */
-@import "shards-dashboards.1.1.0.min.css";
+
 @import '~bootstrap/scss/bootstrap.scss';
